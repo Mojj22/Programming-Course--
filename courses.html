@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - الكورسات | Programming Course</title>
+    <link rel="icon" type="image/jpeg" href="images/دورة برمجة بخلفية نيون.png"/>
+    <meta name="description" content="اكتشف مجموعة متنوعة من كورسات البرمجة المجانية والمدفوعة، من HTML و CSS إلى JavaScript و Python">
+    <meta name="keywords" content="كورسات برمجة, HTML, CSS, JavaScript, Python, تعلم البرمجة">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Programming Course</h2>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+                <a href="about.html" class="nav-link" data-ar="من نحن" data-en="About">من نحن</a>
+                <a href="courses.html" class="nav-link active" data-ar="الكورسات" data-en="Courses">الكورسات</a>
+                <a href="contact.html" class="nav-link" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a>
+            </div>
+            <div class="nav-controls">
+                <a href="login.html" class="btn btn-secondary" data-ar="تسجيل الدخول" data-en="Login">تسجيل الدخول</a>
+                <a href="register.html" class="btn btn-primary" data-ar="إنشاء حساب" data-en="Sign Up">إنشاء حساب</a>
+                <button class="lang-toggle" id="langToggle">EN</button>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content text-center">
+                <h1 class="hero-title" data-ar="كورسات البرمجة" data-en="Programming Courses">كورسات البرمجة</h1>
+                <p class="hero-description" data-ar="اكتشف مجموعة متنوعة من الكورسات المصممة لمساعدتك في تعلم البرمجة" data-en="Discover a variety of courses designed to help you learn programming">اكتشف مجموعة متنوعة من الكورسات المصممة لمساعدتك في تعلم البرمجة</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Categories -->
+    <section class="about-preview">
+        <div class="container">
+            <h2 class="section-title" data-ar="فئات الكورسات" data-en="Course Categories">فئات الكورسات</h2>
+            <div class="category-filters">
+                <button class="filter-btn active" data-category="all" data-ar="الكل" data-en="All">الكل</button>
+                <button class="filter-btn" data-category="web" data-ar="تطوير الويب" data-en="Web Development">تطوير الويب</button>
+                <button class="filter-btn" data-category="mobile" data-ar="تطوير الموبايل" data-en="Mobile Development">تطوير الموبايل</button>
+                <button class="filter-btn" data-category="data" data-ar="علوم البيانات" data-en="Data Science">علوم البيانات</button>
+                <button class="filter-btn" data-category="ai" data-ar="الذكاء الاصطناعي" data-en="Artificial Intelligence">الذكاء الاصطناعي</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Grid -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title" data-ar="جميع الكورسات" data-en="All Courses">جميع الكورسات</h2>
+            <div class="courses-grid">
+                <!-- Web Development Courses -->
+                <div class="course-card" data-category="web">
+                    <div class="course-image">
+                        <div class="course-icon">🌐</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title" data-ar="HTML و CSS للمبتدئين" data-en="HTML & CSS for Beginners">HTML و CSS للمبتدئين</h3>
+                        <p class="course-description" data-ar="تعلم أساسيات تطوير الويب باستخدام HTML و CSS" data-en="Learn the basics of web development using HTML and CSS">تعلم أساسيات تطوير الويب باستخدام HTML و CSS</p>
+                        <div class="course-meta">
+                            <span class="course-duration" data-ar="4 أسابيع" data-en="4 Weeks">4 أسابيع</span>
+                            <span class="course-level" data-ar="مبتدئ" data-en="Beginner">مبتدئ</span>
+                        </div>
+                        <div class="course-price">
+                            <span class="price" data-ar="مجاني" data-en="Free">مجاني</span>
+                        </div>
+                        <a href="courses/html-course.html" class="btn btn-primary" data-ar="ابدأ الآن" data-en="Start Now">ابدأ الآن</a>
+                    </div>
+                </div>
+
+                <div class="course-card" data-category="web">
+                    <div class="course-image">
+                        <div class="course-icon">⚡</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title" data-ar="JavaScript المتقدم" data-en="Advanced JavaScript">JavaScript المتقدم</h3>
+                        <p class="course-description" data-ar="تعلم JavaScript المتقدم و ES6+ والمفاهيم الحديثة" data-en="Learn advanced JavaScript, ES6+ and modern concepts">تعلم JavaScript المتقدم و ES6+ والمفاهيم الحديثة</p>
+                        <div class="course-meta">
+                            <span class="course-duration" data-ar="6 أسابيع" data-en="6 Weeks">6 أسابيع</span>
+                            <span class="course-level" data-ar="متوسط" data-en="Intermediate">متوسط</span>
+                        </div>
+                        <div class="course-price">
+                            <span class="price" data-ar="مجاني" data-en="Free">مجاني</span>
+                        </div>
+                        <a href="courses/javascript-course.html" class="btn btn-primary" data-ar="ابدأ الآن" data-en="Start Now">ابدأ الآن</a>
+                    </div>
+                </div>
+
+                <div class="course-card" data-category="web">
+                    <div class="course-image">
+                        <div class="course-icon">⚛️</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title" data-ar="React.js من الصفر" data-en="React.js from Scratch">React.js من الصفر</h3>
+                        <p class="course-description" data-ar="تعلم React.js لبناء تطبيقات ويب تفاعلية" data-en="Learn React.js to build interactive web applications">تعلم React.js لبناء تطبيقات ويب تفاعلية</p>
+                        <div class="course-meta">
+                            <span class="course-duration" data-ar="8 أسابيع" data-en="8 Weeks">8 أسابيع</span>
+                            <span class="course-level" data-ar="متقدم" data-en="Advanced">متقدم</span>
+                        </div>
+                        <div class="course-price">
+                            <span class="price" data-ar="مجاني" data-en="Free">مجاني</span>
+                        </div>
+                        <a href="courses/react-course.html" class="btn btn-primary" data-ar="ابدأ الآن" data-en="Start Now">ابدأ الآن</a>
+                    </div>
+                </div>
+
+                <!-- Mobile Development Courses -->
+                <div class="course-card" data-category="mobile">
+                    <div class="course-image">
+                        <div class="course-icon">📱</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title" data-ar="تطوير تطبيقات Android" data-en="Android App Development">تطوير تطبيقات Android</h3>
+                        <p class="course-description" data-ar="تعلم تطوير تطبيقات Android باستخدام Java و Kotlin" data-en="Learn Android app development using Java and Kotlin">تعلم تطوير تطبيقات Android باستخدام Java و Kotlin</p>
+                        <div class="course-meta">
+                            <span class="course-duration" data-ar="10 أسابيع" data-en="10 Weeks">10 أسابيع</span>
+                            <span class="course-level" data-ar="متوسط" data-en="Intermediate">متوسط</span>
+                        </div>
+                        <div class="course-price">
+                            <span class="price" data-ar="مجاني" data-en="Free">مجاني</span>
+                        </div>
+                        <a href="courses/android-course.html" class="btn btn-primary" data-ar="ابدأ الآن" data-en="Start Now">ابدأ الآن</a>
+                    </div>
+                </div>
+
+                <div class="course-card" data-category="mobile">
+                    <div class="course-image">
+                        <div class="course-icon">🍎</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title" data-ar="تطوير تطبيقات iOS" data-en="iOS App Development">تطوير تطبيقات iOS</h3>
+                        <p class="course-description" data-ar="تعلم تطوير تطبيقات iOS باستخدام Swift" data-en="Learn iOS app development using Swift">تعلم تطوير تطبيقات iOS باستخدام Swift</p>
+                        <div class="course-meta">
+                            <span class="course-duration" data-ar="12 أسابيع" data-en="12 Weeks">12 أسابيع</span>
+                            <span class="course-level" data-ar="متقدم" data-en="Advanced">متقدم</span>
+                        </div>
+                        <div class="course-price">
+                            <span class="price" data-ar="مجاني" data-en="Free">مجاني</span>
+                        </div>
+                        <a href="courses/ios-course.html" class="btn btn-primary" data-ar="ابدأ الآن" data-en="Start Now">ابدأ الآن</a>
+                    </div>
+                </div>
+
+                <!-- Data Science Courses -->
+                <div class="course-card" data-category="data">
+                    <div class="course-image">
+                        <div class="course-icon">🐍</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title" data-ar="Python لعلوم البيانات" data-en="Python for Data Science">Python لعلوم البيانات</h3>
+                        <p class="course-description" data-ar="تعلم Python و مكتباتها لتحليل البيانات" data-en="Learn Python and its libraries for data analysis">تعلم Python و مكتباتها لتحليل البيانات</p>
+                        <div class="course-meta">
+                            <span class="course-duration" data-ar="6 أسابيع" data-en="6 Weeks">6 أسابيع</span>
+                            <span class="course-level" data-ar="مبتدئ" data-en="Beginner">مبتدئ</span>
+                        </div>
+                        <div class="course-price">
+                            <span class="price" data-ar="مجاني" data-en="Free">مجاني</span>
+                        </div>
+                        <a href="courses/python-course.html" class="btn btn-primary" data-ar="ابدأ الآن" data-en="Start Now">ابدأ الآن</a>
+                    </div>
+                </div>
+
+                <div class="course-card" data-category="data">
+                    <div class="course-image">
+                        <div class="course-icon">📊</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title" data-ar="Machine Learning" data-en="Machine Learning">Machine Learning</h3>
+                        <p class="course-description" data-ar="تعلم خوارزميات التعلم الآلي وتطبيقها" data-en="Learn machine learning algorithms and their applications">تعلم خوارزميات التعلم الآلي وتطبيقها</p>
+                        <div class="course-meta">
+                            <span class="course-duration" data-ar="8 أسابيع" data-en="8 Weeks">8 أسابيع</span>
+                            <span class="course-level" data-ar="متقدم" data-en="Advanced">متقدم</span>
+                        </div>
+                        <div class="course-price">
+                            <span class="price" data-ar="مجاني" data-en="Free">مجاني</span>
+                        </div>
+                        <a href="courses/machine-learning-course.html" class="btn btn-primary" data-ar="ابدأ الآن" data-en="Start Now">ابدأ الآن</a>
+                    </div>
+                </div>
+
+                <!-- AI Courses -->
+                <div class="course-card" data-category="ai">
+                    <div class="course-image">
+                        <div class="course-icon">🤖</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title" data-ar="الذكاء الاصطناعي للمبتدئين" data-en="AI for Beginners">الذكاء الاصطناعي للمبتدئين</h3>
+                        <p class="course-description" data-ar="تعلم أساسيات الذكاء الاصطناعي وتطبيقاته" data-en="Learn the basics of artificial intelligence and its applications">تعلم أساسيات الذكاء الاصطناعي وتطبيقاته</p>
+                        <div class="course-meta">
+                            <span class="course-duration" data-ar="5 أسابيع" data-en="5 Weeks">5 أسابيع</span>
+                            <span class="course-level" data-ar="مبتدئ" data-en="Beginner">مبتدئ</span>
+                        </div>
+                        <div class="course-price">
+                            <span class="price" data-ar="مجاني" data-en="Free">مجاني</span>
+                        </div>
+                        <a href="courses/ai-course.html" class="btn btn-primary" data-ar="ابدأ الآن" data-en="Start Now">ابدأ الآن</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="about-preview">
+        <div class="container">
+            <div class="cta-content text-center">
+                <h2 class="section-title" data-ar="ابدأ رحلتك في البرمجة اليوم" data-en="Start Your Programming Journey Today">ابدأ رحلتك في البرمجة اليوم</h2>
+                <p class="cta-description" data-ar="انضم إلى آلاف الطلاب الذين تعلموا البرمجة معنا" data-en="Join thousands of students who learned programming with us">انضم إلى آلاف الطلاب الذين تعلموا البرمجة معنا</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary" data-ar="سجل الآن" data-en="Register Now">سجل الآن</a>
+                    <a href="about.html" class="btn btn-secondary" data-ar="اعرف المزيد" data-en="Learn More">اعرف المزيد</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 data-ar="دورة البرمجة" data-en="Programming Course">دورة البرمجة</h3>
+                    <p data-ar="وجهتك الأولى لتعلم البرمجة" data-en="Your first destination to learn programming">وجهتك الأولى لتعلم البرمجة</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+                        <li><a href="about.html" data-ar="من نحن" data-en="About">من نحن</a></li>
+                        <li><a href="courses.html" data-ar="الكورسات" data-en="Courses">الكورسات</a></li>
+                        <li><a href="contact.html" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h4>
+                    <p data-ar="البريد الإلكتروني: mmhnoopm@gmail.com" data-en="Email: mmhnoopm@gmail.com">البريد الإلكتروني: mmhnoopm@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-ar="© 2025 دورة البرمجة. جميع الحقوق محفوظة." data-en="© 2024 Programming Course. All rights reserved.">© 2025 دورة البرمجة. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Course filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const courseCards = document.querySelectorAll('.course-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+
+                    const category = this.getAttribute('data-category');
+
+                    courseCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                            card.classList.add('fade-in');
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

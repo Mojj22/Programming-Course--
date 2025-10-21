@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Course - دورة الذكاء الاصطناعي | Programming Course</title>
+    <link rel="icon" type="image/jpeg" href="images/دورة برمجة بخلفية نيون.png"/>
+    <meta name="description" content="تعلم الذكاء الاصطناعي من الصفر حتى الاحتراف مع دروس فيديو تفاعلية وكتب مجانية">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .course-header {
+            background: linear-gradient(135deg, #3b82f6, #f59e0b);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        .lesson-card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        .lesson-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        .lesson-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .lesson-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        .lesson-duration {
+            background: var(--main-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            margin-bottom: 1rem;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 0.5rem;
+        }
+        .resources-section {
+            background: var(--bg-color);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-top: 2rem;
+        }
+        .book-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .book-icon {
+            font-size: 2rem;
+        }
+        .book-info h4 {
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+        .book-info p {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+        .download-btn {
+            background: var(--main-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .download-btn:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        .progress-bar {
+            background: var(--border-color);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        .progress-fill {
+            background: var(--main-color);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Programming Course</h2>
+            </div>
+            <div class="nav-menu">
+                <a href="../index.html" class="nav-link" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+                <a href="../about.html" class="nav-link" data-ar="من نحن" data-en="About">من نحن</a>
+                <a href="../courses.html" class="nav-link" data-ar="الكورسات" data-en="Courses">الكورسات</a>
+                <a href="../contact.html" class="nav-link" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a>
+            </div>
+            <div class="nav-controls">
+                <button class="lang-toggle" id="langToggle">EN</button>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Course Header -->
+    <section class="course-header">
+        <div class="container">
+            <h1 class="hero-title" data-ar="دورة الذكاء الاصطناعي للمبتدئين" data-en="AI Course for Beginners">دورة الذكاء الاصطناعي للمبتدئين</h1>
+            <p class="hero-description" data-ar="تعلم أساسيات الذكاء الاصطناعي وتطبيقاته مع دروس فيديو تفاعلية" data-en="Learn the basics of artificial intelligence and its applications with interactive video lessons">تعلم أساسيات الذكاء الاصطناعي وتطبيقاته مع دروس فيديو تفاعلية</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="courseProgress"></div>
+            </div>
+            <p data-ar="التقدم: 0%" data-en="Progress: 0%" id="progressText">التقدم: 0%</p>
+        </div>
+    </section>
+
+    <!-- Course Content -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title" data-ar="دروس الدورة" data-en="Course Lessons">دروس الدورة</h2>
+            
+            <!-- Lesson 1 -->
+            <div class="lesson-card" data-lesson="1">
+                <div class="lesson-header">
+                    <h3 class="lesson-title" data-ar="الدرس الأول: مقدمة في الذكاء الاصطناعي" data-en="Lesson 1: Introduction to AI">الدرس الأول: مقدمة في الذكاء الاصطناعي</h3>
+                    <span class="lesson-duration" data-ar="40 دقيقة" data-en="40 min">40 دقيقة</span>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/aircAruvnKk" title="AI Introduction" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <p data-ar="في هذا الدرس ستتعلم أساسيات الذكاء الاصطناعي، ما هو AI، وتاريخه وتطبيقاته" data-en="In this lesson you will learn AI basics, what is AI, its history and applications">في هذا الدرس ستتعلم أساسيات الذكاء الاصطناعي، ما هو AI، وتاريخه وتطبيقاته</p>
+                <button class="btn btn-primary mark-complete" data-ar="تمم الدرس" data-en="Mark Complete">تمم الدرس</button>
+            </div>
+
+            <!-- Lesson 2 -->
+            <div class="lesson-card" data-lesson="2">
+                <div class="lesson-header">
+                    <h3 class="lesson-title" data-ar="الدرس الثاني: أنواع الذكاء الاصطناعي" data-en="Lesson 2: Types of AI">الدرس الثاني: أنواع الذكاء الاصطناعي</h3>
+                    <span class="lesson-duration" data-ar="45 دقيقة" data-en="45 min">45 دقيقة</span>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/aircAruvnKk" title="Types of AI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <p data-ar="تعلم أنواع الذكاء الاصطناعي المختلفة مثل Weak AI و Strong AI" data-en="Learn different types of artificial intelligence like Weak AI and Strong AI">تعلم أنواع الذكاء الاصطناعي المختلفة مثل Weak AI و Strong AI</p>
+                <button class="btn btn-primary mark-complete" data-ar="تمم الدرس" data-en="Mark Complete">تمم الدرس</button>
+            </div>
+
+            <!-- Lesson 3 -->
+            <div class="lesson-card" data-lesson="3">
+                <div class="lesson-header">
+                    <h3 class="lesson-title" data-ar="الدرس الثالث: خوارزميات الذكاء الاصطناعي" data-en="Lesson 3: AI Algorithms">الدرس الثالث: خوارزميات الذكاء الاصطناعي</h3>
+                    <span class="lesson-duration" data-ar="50 دقيقة" data-en="50 min">50 دقيقة</span>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/aircAruvnKk" title="AI Algorithms" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <p data-ar="تعلم أهم خوارزميات الذكاء الاصطناعي وكيفية عملها" data-en="Learn the most important AI algorithms and how they work">تعلم أهم خوارزميات الذكاء الاصطناعي وكيفية عملها</p>
+                <button class="btn btn-primary mark-complete" data-ar="تمم الدرس" data-en="Mark Complete">تمم الدرس</button>
+            </div>
+
+            <!-- Lesson 4 -->
+            <div class="lesson-card" data-lesson="4">
+                <div class="lesson-header">
+                    <h3 class="lesson-title" data-ar="الدرس الرابع: تطبيقات الذكاء الاصطناعي" data-en="Lesson 4: AI Applications">الدرس الرابع: تطبيقات الذكاء الاصطناعي</h3>
+                    <span class="lesson-duration" data-ar="55 دقيقة" data-en="55 min">55 دقيقة</span>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/aircAruvnKk" title="AI Applications" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <p data-ar="تعلم التطبيقات العملية للذكاء الاصطناعي في مختلف المجالات" data-en="Learn practical applications of AI in various fields">تعلم التطبيقات العملية للذكاء الاصطناعي في مختلف المجالات</p>
+                <button class="btn btn-primary mark-complete" data-ar="تمم الدرس" data-en="Mark Complete">تمم الدرس</button>
+            </div>
+
+            <!-- Lesson 5 -->
+            <div class="lesson-card" data-lesson="5">
+                <div class="lesson-header">
+                    <h3 class="lesson-title" data-ar="الدرس الخامس: مستقبل الذكاء الاصطناعي" data-en="Lesson 5: Future of AI">الدرس الخامس: مستقبل الذكاء الاصطناعي</h3>
+                    <span class="lesson-duration" data-ar="60 دقيقة" data-en="60 min">60 دقيقة</span>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/aircAruvnKk" title="Future of AI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <p data-ar="استكشاف مستقبل الذكاء الاصطناعي وتأثيره على المجتمع" data-en="Explore the future of AI and its impact on society">استكشاف مستقبل الذكاء الاصطناعي وتأثيره على المجتمع</p>
+                <button class="btn btn-primary mark-complete" data-ar="تمم الدرس" data-en="Mark Complete">تمم الدرس</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="resources-section">
+        <div class="container">
+            <h2 class="section-title" data-ar="الكتب والموارد" data-en="Books and Resources">الكتب والموارد</h2>
+            
+            <div class="book-card">
+                <div class="book-icon">📚</div>
+                <div class="book-info">
+                    <h4 data-ar="الذكاء الاصطناعي: الدليل الكامل" data-en="AI: The Complete Guide">الذكاء الاصطناعي: الدليل الكامل</h4>
+                    <p data-ar="كتاب شامل لتعلم الذكاء الاصطناعي من الصفر حتى الاحتراف" data-en="Comprehensive book for learning AI from scratch to professional level">كتاب شامل لتعلم الذكاء الاصطناعي من الصفر حتى الاحتراف</p>
+                </div>
+                <a href="#" class="download-btn" data-ar="تحميل" data-en="Download">تحميل</a>
+            </div>
+
+            <div class="book-card">
+                <div class="book-icon">📖</div>
+                <div class="book-info">
+                    <h4 data-ar="تطبيقات AI في الحياة العملية" data-en="AI Applications in Real Life">تطبيقات AI في الحياة العملية</h4>
+                    <p data-ar="دليل شامل لتطبيقات الذكاء الاصطناعي في الحياة العملية" data-en="Comprehensive guide to AI applications in real life">دليل شامل لتطبيقات الذكاء الاصطناعي في الحياة العملية</p>
+                </div>
+                <a href="#" class="download-btn" data-ar="تحميل" data-en="Download">تحميل</a>
+            </div>
+
+            <div class="book-card">
+                <div class="book-icon">💻</div>
+                <div class="book-info">
+                    <h4 data-ar="تمارين AI عملية" data-en="Practical AI Exercises">تمارين AI عملية</h4>
+                    <p data-ar="مجموعة من التمارين العملية لتطبيق ما تعلمته" data-en="Collection of practical exercises to apply what you learned">مجموعة من التمارين العملية لتطبيق ما تعلمته</p>
+                </div>
+                <a href="#" class="download-btn" data-ar="تحميل" data-en="Download">تحميل</a>
+            </div>
+
+            <div class="book-card">
+                <div class="book-icon">🎯</div>
+                <div class="book-info">
+                    <h4 data-ar="مشاريع AI للمبتدئين" data-en="AI Projects for Beginners">مشاريع AI للمبتدئين</h4>
+                    <p data-ar="مشاريع عملية لبناء محفظة أعمالك" data-en="Practical projects to build your portfolio">مشاريع عملية لبناء محفظة أعمالك</p>
+                </div>
+                <a href="#" class="download-btn" data-ar="تحميل" data-en="Download">تحميل</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 data-ar="دورة البرمجة" data-en="Programming Course">دورة البرمجة</h3>
+                    <p data-ar="وجهتك الأولى لتعلم البرمجة" data-en="Your first destination to learn programming">وجهتك الأولى لتعلم البرمجة</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h4>
+                    <ul>
+                        <li><a href="../index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+                        <li><a href="../about.html" data-ar="من نحن" data-en="About">من نحن</a></li>
+                        <li><a href="../courses.html" data-ar="الكورسات" data-en="Courses">الكورسات</a></li>
+                        <li><a href="../contact.html" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h4>
+                    <p data-ar="البريد الإلكتروني: info@programming-course.com" data-en="Email: info@programming-course.com">البريد الإلكتروني: info@programming-course.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-ar="© 2024 دورة البرمجة. جميع الحقوق محفوظة." data-en="© 2024 Programming Course. All rights reserved.">© 2024 دورة البرمجة. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        // Course progress tracking
+        let completedLessons = JSON.parse(localStorage.getItem('aiCompletedLessons')) || [];
+        const totalLessons = 5;
+
+        function updateProgress() {
+            const progress = (completedLessons.length / totalLessons) * 100;
+            document.getElementById('courseProgress').style.width = progress + '%';
+            document.getElementById('progressText').textContent = 
+                document.body.getAttribute('lang') === 'ar' ? 
+                `التقدم: ${Math.round(progress)}%` : 
+                `Progress: ${Math.round(progress)}%`;
+        }
+
+        // Mark lesson as complete
+        document.querySelectorAll('.mark-complete').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const lessonCard = this.closest('.lesson-card');
+                const lessonNumber = lessonCard.getAttribute('data-lesson');
+                
+                if (!completedLessons.includes(lessonNumber)) {
+                    completedLessons.push(lessonNumber);
+                    localStorage.setItem('aiCompletedLessons', JSON.stringify(completedLessons));
+                    updateProgress();
+                    
+                    this.textContent = document.body.getAttribute('lang') === 'ar' ? 'مكتمل ✓' : 'Completed ✓';
+                    this.style.background = '#10b981';
+                    this.disabled = true;
+                }
+            });
+        });
+
+        // Initialize progress
+        updateProgress();
+
+        // Mark completed lessons
+        completedLessons.forEach(lessonNumber => {
+            const lessonCard = document.querySelector(`[data-lesson="${lessonNumber}"]`);
+            if (lessonCard) {
+                const btn = lessonCard.querySelector('.mark-complete');
+                btn.textContent = document.body.getAttribute('lang') === 'ar' ? 'مكتمل ✓' : 'Completed ✓';
+                btn.style.background = '#10b981';
+                btn.disabled = true;
+            }
+        });
+    </script>
+</body>
+</html>

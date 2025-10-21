@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Course - دورة HTML | Programming Course</title>
+    <link rel="icon" type="image/jpeg" href="images/دورة برمجة بخلفية نيون.png"/>
+    <meta name="description" content="تعلم HTML من الصفر حتى الاحتراف مع دروس فيديو تفاعلية وكتب مجانية">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .course-header {
+            background: linear-gradient(135deg, #3b82f6, #f59e0b);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        .lesson-card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        .lesson-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        .lesson-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .lesson-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        .lesson-duration {
+            background: var(--main-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            margin-bottom: 1rem;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 0.5rem;
+        }
+        .resources-section {
+            background: var(--bg-color);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-top: 2rem;
+        }
+        .book-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .book-icon {
+            font-size: 2rem;
+        }
+        .book-info h4 {
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+        .book-info p {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+        .download-btn {
+            background: var(--main-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .download-btn:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        .progress-bar {
+            background: var(--border-color);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        .progress-fill {
+            background: var(--main-color);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Programming Course</h2>
+            </div>
+            <div class="nav-menu">
+                <a href="../index.html" class="nav-link" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+                <a href="../about.html" class="nav-link" data-ar="من نحن" data-en="About">من نحن</a>
+                <a href="../courses.html" class="nav-link" data-ar="الكورسات" data-en="Courses">الكورسات</a>
+                <a href="../contact.html" class="nav-link" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a>
+            </div>
+            <div class="nav-controls">
+                <button class="lang-toggle" id="langToggle">EN</button>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Course Header -->
+    <section class="course-header">
+        <div class="container">
+            <h1 class="hero-title" data-ar="دورة HTML للمبتدئين" data-en="HTML Course for Beginners">دورة HTML للمبتدئين</h1>
+            <p class="hero-description" data-ar="تعلم HTML من الصفر حتى الاحتراف مع دروس فيديو تفاعلية" data-en="Learn HTML from scratch to professional level with interactive video lessons">تعلم HTML من الصفر حتى الاحتراف مع دروس فيديو تفاعلية</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="courseProgress"></div>
+            </div>
+            <p data-ar="التقدم: 0%" data-en="Progress: 0%" id="progressText">التقدم: 0%</p>
+        </div>
+    </section>
+
+    <!-- Course Content -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title" data-ar="دروس الدورة" data-en="Course Lessons">دروس الدورة</h2>
+            
+            <!-- Lesson 1 -->
+            <div class="lesson-card" data-lesson="1">
+                <div class="lesson-header">
+                    <h3 class="lesson-title" data-ar="الدرس الأول: مقدمة في HTML" data-en="Lesson 1: Introduction to HTML">الدرس الأول: مقدمة في HTML</h3>
+                    <span class="lesson-duration" data-ar="15 دقيقة" data-en="15 min">15 دقيقة</span>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/UB1O30fR-EE" title="HTML Introduction" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <p data-ar="في هذا الدرس ستتعلم أساسيات HTML، ما هو HTML، وكيفية إنشاء أول صفحة ويب لك" data-en="In this lesson you will learn HTML basics, what is HTML, and how to create your first web page">في هذا الدرس ستتعلم أساسيات HTML، ما هو HTML، وكيفية إنشاء أول صفحة ويب لك</p>
+                <button class="btn btn-primary mark-complete" data-ar="تمم الدرس" data-en="Mark Complete">تمم الدرس</button>
+            </div>
+
+            <!-- Lesson 2 -->
+            <div class="lesson-card" data-lesson="2">
+                <div class="lesson-header">
+                    <h3 class="lesson-title" data-ar="الدرس الثاني: العناصر الأساسية" data-en="Lesson 2: Basic Elements">الدرس الثاني: العناصر الأساسية</h3>
+                    <span class="lesson-duration" data-ar="20 دقيقة" data-en="20 min">20 دقيقة</span>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/88PXJAA6szs" title="HTML Basic Elements" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <p data-ar="تعلم العناصر الأساسية في HTML مثل العناوين، الفقرات، الروابط، والصور" data-en="Learn basic HTML elements like headings, paragraphs, links, and images">تعلم العناصر الأساسية في HTML مثل العناوين، الفقرات، الروابط، والصور</p>
+                <button class="btn btn-primary mark-complete" data-ar="تمم الدرس" data-en="Mark Complete">تمم الدرس</button>
+            </div>
+
+            <!-- Lesson 3 -->
+            <div class="lesson-card" data-lesson="3">
+                <div class="lesson-header">
+                    <h3 class="lesson-title" data-ar="الدرس الثالث: القوائم والجداول" data-en="Lesson 3: Lists and Tables">الدرس الثالث: القوائم والجداول</h3>
+                    <span class="lesson-duration" data-ar="25 دقيقة" data-en="25 min">25 دقيقة</span>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/0e24EcNi1wo" title="HTML Lists and Tables" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <p data-ar="تعلم كيفية إنشاء القوائم المرتبة وغير المرتبة، والجداول في HTML" data-en="Learn how to create ordered and unordered lists, and tables in HTML">تعلم كيفية إنشاء القوائم المرتبة وغير المرتبة، والجداول في HTML</p>
+                <button class="btn btn-primary mark-complete" data-ar="تمم الدرس" data-en="Mark Complete">تمم الدرس</button>
+            </div>
+
+            <!-- Lesson 4 -->
+            <div class="lesson-card" data-lesson="4">
+                <div class="lesson-header">
+                    <h3 class="lesson-title" data-ar="الدرس الرابع: النماذج" data-en="Lesson 4: Forms">الدرس الرابع: النماذج</h3>
+                    <span class="lesson-duration" data-ar="30 دقيقة" data-en="30 min">30 دقيقة</span>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/fNcJuPIZ2WE" title="HTML Forms" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <p data-ar="تعلم كيفية إنشاء النماذج التفاعلية وجمع البيانات من المستخدمين" data-en="Learn how to create interactive forms and collect data from users">تعلم كيفية إنشاء النماذج التفاعلية وجمع البيانات من المستخدمين</p>
+                <button class="btn btn-primary mark-complete" data-ar="تمم الدرس" data-en="Mark Complete">تمم الدرس</button>
+            </div>
+
+            <!-- Lesson 5 -->
+            <div class="lesson-card" data-lesson="5">
+                <div class="lesson-header">
+                    <h3 class="lesson-title" data-ar="الدرس الخامس: HTML5 الجديد" data-en="Lesson 5: New HTML5">الدرس الخامس: HTML5 الجديد</h3>
+                    <span class="lesson-duration" data-ar="35 دقيقة" data-en="35 min">35 دقيقة</span>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/88PXJAA6szs" title="HTML5 New Features" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <p data-ar="تعلم الميزات الجديدة في HTML5 مثل العناصر الدلالية والوسائط المتعددة" data-en="Learn new features in HTML5 like semantic elements and multimedia">تعلم الميزات الجديدة في HTML5 مثل العناصر الدلالية والوسائط المتعددة</p>
+                <button class="btn btn-primary mark-complete" data-ar="تمم الدرس" data-en="Mark Complete">تمم الدرس</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="resources-section">
+        <div class="container">
+            <h2 class="section-title" data-ar="الكتب والموارد" data-en="Books and Resources">الكتب والموارد</h2>
+            
+            <div class="book-card">
+                <div class="book-icon">📚</div>
+                <div class="book-info">
+                    <h4 data-ar="HTML و CSS: تصميم وتطوير المواقع" data-en="HTML and CSS: Design and Build Websites">HTML و CSS: تصميم وتطوير المواقع</h4>
+                    <p data-ar="كتاب شامل لتعلم HTML و CSS من الصفر" data-en="Comprehensive book for learning HTML and CSS from scratch">كتاب شامل لتعلم HTML و CSS من الصفر</p>
+                </div>
+                <a href="#" class="download-btn" data-ar="تحميل" data-en="Download">تحميل</a>
+            </div>
+
+            <div class="book-card">
+                <div class="book-icon">📖</div>
+                <div class="book-info">
+                    <h4 data-ar="دليل HTML5 الكامل" data-en="Complete HTML5 Guide">دليل HTML5 الكامل</h4>
+                    <p data-ar="دليل شامل لجميع ميزات HTML5" data-en="Comprehensive guide to all HTML5 features">دليل شامل لجميع ميزات HTML5</p>
+                </div>
+                <a href="#" class="download-btn" data-ar="تحميل" data-en="Download">تحميل</a>
+            </div>
+
+            <div class="book-card">
+                <div class="book-icon">💻</div>
+                <div class="book-info">
+                    <h4 data-ar="تمارين HTML عملية" data-en="Practical HTML Exercises">تمارين HTML عملية</h4>
+                    <p data-ar="مجموعة من التمارين العملية لتطبيق ما تعلمته" data-en="Collection of practical exercises to apply what you learned">مجموعة من التمارين العملية لتطبيق ما تعلمته</p>
+                </div>
+                <a href="#" class="download-btn" data-ar="تحميل" data-en="Download">تحميل</a>
+            </div>
+
+            <div class="book-card">
+                <div class="book-icon">🎯</div>
+                <div class="book-info">
+                    <h4 data-ar="مشاريع HTML للمبتدئين" data-en="HTML Projects for Beginners">مشاريع HTML للمبتدئين</h4>
+                    <p data-ar="مشاريع عملية لبناء محفظة أعمالك" data-en="Practical projects to build your portfolio">مشاريع عملية لبناء محفظة أعمالك</p>
+                </div>
+                <a href="#" class="download-btn" data-ar="تحميل" data-en="Download">تحميل</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 data-ar="دورة البرمجة" data-en="Programming Course">دورة البرمجة</h3>
+                    <p data-ar="وجهتك الأولى لتعلم البرمجة" data-en="Your first destination to learn programming">وجهتك الأولى لتعلم البرمجة</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h4>
+                    <ul>
+                        <li><a href="../index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+                        <li><a href="../about.html" data-ar="من نحن" data-en="About">من نحن</a></li>
+                        <li><a href="../courses.html" data-ar="الكورسات" data-en="Courses">الكورسات</a></li>
+                        <li><a href="../contact.html" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h4>
+                    <p data-ar="البريد الإلكتروني: info@programming-course.com" data-en="Email: info@programming-course.com">البريد الإلكتروني: info@programming-course.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-ar="© 2024 دورة البرمجة. جميع الحقوق محفوظة." data-en="© 2024 Programming Course. All rights reserved.">© 2024 دورة البرمجة. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        // Course progress tracking
+        let completedLessons = JSON.parse(localStorage.getItem('htmlCompletedLessons')) || [];
+        const totalLessons = 5;
+
+        function updateProgress() {
+            const progress = (completedLessons.length / totalLessons) * 100;
+            document.getElementById('courseProgress').style.width = progress + '%';
+            document.getElementById('progressText').textContent = 
+                document.body.getAttribute('lang') === 'ar' ? 
+                `التقدم: ${Math.round(progress)}%` : 
+                `Progress: ${Math.round(progress)}%`;
+        }
+
+        // Mark lesson as complete
+        document.querySelectorAll('.mark-complete').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const lessonCard = this.closest('.lesson-card');
+                const lessonNumber = lessonCard.getAttribute('data-lesson');
+                
+                if (!completedLessons.includes(lessonNumber)) {
+                    completedLessons.push(lessonNumber);
+                    localStorage.setItem('htmlCompletedLessons', JSON.stringify(completedLessons));
+                    updateProgress();
+                    
+                    this.textContent = document.body.getAttribute('lang') === 'ar' ? 'مكتمل ✓' : 'Completed ✓';
+                    this.style.background = '#10b981';
+                    this.disabled = true;
+                }
+            });
+        });
+
+        // Initialize progress
+        updateProgress();
+
+        // Mark completed lessons
+        completedLessons.forEach(lessonNumber => {
+            const lessonCard = document.querySelector(`[data-lesson="${lessonNumber}"]`);
+            if (lessonCard) {
+                const btn = lessonCard.querySelector('.mark-complete');
+                btn.textContent = document.body.getAttribute('lang') === 'ar' ? 'مكتمل ✓' : 'Completed ✓';
+                btn.style.background = '#10b981';
+                btn.disabled = true;
+            }
+        });
+    </script>
+</body>
+</html>

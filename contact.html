@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - تواصل معنا | Programming Course</title>
+    <link rel="icon" type="image/jpeg" href="images/دورة برمجة بخلفية نيون.png"/>
+    <meta name="description" content="تواصل معنا للحصول على المساعدة أو الاستفسارات حول كورسات البرمجة">
+    <meta name="keywords" content="تواصل معنا, دعم فني, استفسارات, مساعدة">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Programming Course</h2>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+                <a href="about.html" class="nav-link" data-ar="من نحن" data-en="About">من نحن</a>
+                <a href="courses.html" class="nav-link" data-ar="الكورسات" data-en="Courses">الكورسات</a>
+                <a href="contact.html" class="nav-link active" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a>
+            </div>
+            <div class="nav-controls">
+                <a href="login.html" class="btn btn-secondary" data-ar="تسجيل الدخول" data-en="Login">تسجيل الدخول</a>
+                <a href="register.html" class="btn btn-primary" data-ar="إنشاء حساب" data-en="Sign Up">إنشاء حساب</a>
+                <button class="lang-toggle" id="langToggle">EN</button>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content text-center">
+                <h1 class="hero-title" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h1>
+                <p class="hero-description" data-ar="نحن هنا لمساعدتك في رحلتك التعليمية" data-en="We're here to help you in your learning journey">نحن هنا لمساعدتك في رحلتك التعليمية</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="about-preview">
+        <div class="container">
+            <h2 class="section-title" data-ar="معلومات التواصل" data-en="Contact Information">معلومات التواصل</h2>
+            <div class="contact-info-grid">
+                <div class="contact-info-card">
+                    <div class="contact-icon">📧</div>
+                    <h3 data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</h3>
+                    <p>mmhnoopm@gmail.com </p>
+                    <p>mmplmmopw@gmail.com</p>
+                </div>
+                <div class="contact-info-card">
+                    <div class="contact-icon">📱</div>
+                    <h3 data-ar="الهاتف" data-en="Phone">الهاتف</h3>
+                    <p data-ar="+20 01153718088" data-en="+20 01153718088">+201153718088</p>
+                    <p data-ar="+20 01080350261" data-en="+20 01080350261">+201080350261</p>
+                </div>
+                <div class="contact-info-card">
+                    <div class="contact-icon">📍</div>
+                    <h3 data-ar="العنوان" data-en="Address">العنوان</h3>
+                    <p data-ar=" جمهورية مصر العربية"data-en="Riyadh, Saudi Arabia">   جمهورية مصر العربية</p>
+                    <!-- <p data-ar=" سوهاج مركز البلينا"data-en="King Fahd Street, Technology Building">  سوهاج  مركز البلينا </p> -->
+                </div>
+                <div class="contact-info-card">
+                    <div class="contact-icon">⏰</div>
+                    <h3 data-ar="ساعات العمل" data-en="Working Hours">ساعات العمل</h3>
+                    <p data-ar="الأحد - الخميس: 9:00 ص - 6:00 م" data-en="Sunday - Thursday: 9:00 AM - 6:00 PM">الأحد - الخميس: 9:00 ص - 6:00 م</p>
+                    <p data-ar="الجمعة - السبت: مغلق" data-en="Friday - Saturday: Closed">الجمعة - السبت: مغلق</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title" data-ar="أرسل لنا رسالة" data-en="Send Us a Message">أرسل لنا رسالة</h2>
+            <div class="contact-form-container">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName" class="form-label" data-ar="الاسم الأول" data-en="First Name">الاسم الأول</label>
+                            <input type="text" id="firstName" name="firstName" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName" class="form-label" data-ar="الاسم الأخير" data-en="Last Name">الاسم الأخير</label>
+                            <input type="text" id="lastName" name="lastName" class="form-input" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label" data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</label>
+                        <input type="email" id="email" name="email" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="form-label" data-ar="رقم الهاتف" data-en="Phone Number">رقم الهاتف</label>
+                        <input type="tel" id="phone" name="phone" class="form-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject" class="form-label" data-ar="الموضوع" data-en="Subject">الموضوع</label>
+                        <select id="subject" name="subject" class="form-input" required>
+                            <option value="" data-ar="اختر الموضوع" data-en="Select Subject">اختر الموضوع</option>
+                            <option value="general" data-ar="استفسار عام" data-en="General Inquiry">استفسار عام</option>
+                            <option value="course" data-ar="استفسار عن كورس" data-en="Course Inquiry">استفسار عن كورس</option>
+                            <option value="technical" data-ar="دعم فني" data-en="Technical Support">دعم فني</option>
+                            <option value="partnership" data-ar="شراكة" data-en="Partnership">شراكة</option>
+                            <option value="other" data-ar="أخرى" data-en="Other">أخرى</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message" class="form-label" data-ar="الرسالة" data-en="Message">الرسالة</label>
+                        <textarea id="message" name="message" class="form-textarea" rows="5" required data-ar="اكتب رسالتك هنا..." data-en="Write your message here..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="newsletter" name="newsletter">
+                            <span class="checkmark"></span>
+                            <span data-ar="أريد الاشتراك في النشرة الإخبارية" data-en="I want to subscribe to the newsletter">أريد الاشتراك في النشرة الإخبارية</span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full" data-ar="إرسال الرسالة" data-en="Send Message">إرسال الرسالة</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="about-preview">
+        <div class="container">
+            <h2 class="section-title" data-ar="الأسئلة الشائعة" data-en="Frequently Asked Questions">الأسئلة الشائعة</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-ar="كيف يمكنني التسجيل في الكورسات؟" data-en="How can I register for courses?">كيف يمكنني التسجيل في الكورسات؟</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-ar="يمكنك التسجيل في الكورسات من خلال صفحة الكورسات، اختر الكورس المناسب لك واضغط على زر 'ابدأ الآن'" data-en="You can register for courses through the courses page, choose the appropriate course for you and click the 'Start Now' button">يمكنك التسجيل في الكورسات من خلال صفحة الكورسات، اختر الكورس المناسب لك واضغط على زر 'ابدأ الآن'</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-ar="هل الكورسات مجانية؟" data-en="Are the courses free?">هل الكورسات مجانية؟</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-ar="نعم، لدينا كورسات مجانية ومدفوعة. الكورسات الأساسية مجانية، بينما الكورسات المتقدمة مدفوعة" data-en="Yes, we have free and paid courses. Basic courses are free, while advanced courses are paid">نعم، لدينا كورسات مجانية ومدفوعة. الكورسات الأساسية مجانية، بينما الكورسات المتقدمة مدفوعة</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-ar="هل أحصل على شهادة بعد إكمال الكورس؟" data-en="Do I get a certificate after completing the course?">هل أحصل على شهادة بعد إكمال الكورس؟</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-ar="نعم، تحصل على شهادة إكمال معتمدة بعد إكمال الكورس بنجاح" data-en="Yes, you get an accredited completion certificate after successfully completing the course">نعم، تحصل على شهادة إكمال معتمدة بعد إكمال الكورس بنجاح</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-ar="هل يمكنني الحصول على دعم فني؟" data-en="Can I get technical support?">هل يمكنني الحصول على دعم فني؟</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-ar="نعم، نوفر دعم فني على مدار الساعة لجميع الطلاب" data-en="Yes, we provide 24/7 technical support for all students">نعم، نوفر دعم فني على مدار الساعة لجميع الطلاب</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title" data-ar="تابعنا على وسائل التواصل الاجتماعي" data-en="Follow Us on Social Media">تابعنا على وسائل التواصل الاجتماعي</h2>
+            <div class="social-links">
+                <a href="https://www.facebook.com/share/17FSHnECKS/" class="social-link" data-ar="فيسبوك" data-en="Facebook">
+                    <span class="social-icon">📘</span>
+                    <span>Facebook</span>
+                </a>
+                <a href="https://x.com/MOHAMMED_6M6?t=N48o26b7O9-mMP3dnFKbeg&s=09" class="social-link" data-ar="تويتر" data-en="Twitter">
+                    <span class="social-icon">🐦</span>
+                    <span>Twitter</span>
+                </a>
+                <a href="https://www.linkedin.com/in/%D0%BC%CF%83%D0%BD%CE%B1%D0%BC%D0%BC%D1%94%C9%92-%CE%B1%D0%B2%C9%92-%CE%B1l-%D0%BCj%CE%B1%D1%94%D1%94%C9%92-%D0%BC%CF%83%D0%BD%CE%B1%D0%BC%D0%BC%D1%94%C9%92-8a0498378?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-link" data-ar="لينكد إن" data-en="LinkedIn">
+                    <span class="social-icon">💼</span>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://www.youtube.com/@MOHAMME-ABD-AL-MAJEED" class="social-link" data-ar="يوتيوب" data-en="YouTube">
+                    <span class="social-icon">📺</span>
+                    <span>YouTube</span>
+                </a>
+                <a href="https://www.instagram.com/mohammed_abd_al_majeed_?igsh=dDZ4ZHZ1ZnhyZWNj" class="social-link" data-ar="إنستغرام" data-en="Instagram">
+                    <span class="social-icon">📷</span>
+                    <span>Instagram</span>
+        
+                </a>
+               
+  
+  <a href="https://wa.me/201153718088" class="social-link" data-ar="واتساب" data-en="Whasapp">
+                    <span class="social-icon">💬</span>
+                    <span>Whasapp</span>
+  </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 data-ar="دورة البرمجة" data-en="Programming Course">دورة البرمجة</h3>
+                    <p data-ar="وجهتك الأولى لتعلم البرمجة" data-en="Your first destination to learn programming">وجهتك الأولى لتعلم البرمجة</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+                        <li><a href="about.html" data-ar="من نحن" data-en="About">من نحن</a></li>
+                        <li><a href="courses.html" data-ar="الكورسات" data-en="Courses">الكورسات</a></li>
+                        <li><a href="contact.html" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h4>
+                    <p data-ar="البريد الإلكتروني: mmhnoopm@gmail.com" data-en="Email: info@programming-course.com">البريد الإلكتروني: mmhnoopm@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-ar="© 2025 دورة البرمجة. جميع الحقوق محفوظة." data-en="© 2024 Programming Course. All rights reserved.">© 2025 دورة البرمجة. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Send contact form notification email
+        async function sendContactNotification(form) {
+            try {
+                const formData = new FormData(form);
+                const contactData = {
+                    firstName: formData.get('firstName'),
+                    lastName: formData.get('lastName'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    subject: formData.get('subject'),
+                    message: formData.get('message'),
+                    newsletter: formData.get('newsletter') === 'on'
+                };
+
+                // In a real application, this would send to your backend
+                // For now, we'll simulate sending an email
+                console.log(`Contact form notification sent to: mmhnoopm@gmail.com`);
+                console.log(`Contact form data:`, contactData);
+                
+                // You can integrate with email services like EmailJS, SendGrid, etc.
+                // Example with EmailJS:
+                /*
+                emailjs.send('service_id', 'template_id', {
+                    to_email: 'mmhnoopm@gmail.com',
+                    contact_data: contactData,
+                    timestamp: new Date().toISOString()
+                });
+                */
+                
+                return true;
+            } catch (error) {
+                console.error('Failed to send contact notification:', error);
+                return false;
+            }
+        }
+        // FAQ Toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                const toggle = item.querySelector('.faq-toggle');
+                
+                question.addEventListener('click', function() {
+                    const isOpen = answer.style.display === 'block';
+                    
+                    // Close all other FAQ items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.querySelector('.faq-answer').style.display = 'none';
+                            otherItem.querySelector('.faq-toggle').textContent = '+';
+                        }
+                    });
+                    
+                    // Toggle current item
+                    if (isOpen) {
+                        answer.style.display = 'none';
+                        toggle.textContent = '+';
+                    } else {
+                        answer.style.display = 'block';
+                        toggle.textContent = '-';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

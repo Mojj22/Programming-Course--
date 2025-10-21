@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملف الشخصي - دورة البرمجة</title>
+    <link rel="icon" type="image/jpeg" href="images/دورة برمجة بخلفية نيون.png"/>
+    <meta name="description" content="إدارة الملف الشخصي وإعدادات الحساب في دورة البرمجة">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', 'Poppins', sans-serif;
+            background: #f8f9fa;
+            color: #202124;
+            line-height: 1.6;
+        }
+
+        .profile-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .settings-sidebar {
+            width: 280px;
+            background: #ffffff;
+            border-left: 1px solid #dadce0;
+            padding: 24px 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .settings-nav {
+            list-style: none;
+        }
+
+        .settings-nav-item {
+            margin-bottom: 4px;
+        }
+
+        .settings-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            color: #5f6368;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border-right: 3px solid transparent;
+        }
+
+        .settings-nav-link:hover {
+            background: #f8f9fa;
+            color: #202124;
+        }
+
+        .settings-nav-link.active {
+            background: #e8f0fe;
+            color: #1a73e8;
+            border-right-color: #1a73e8;
+        }
+
+        .settings-nav-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .settings-content {
+            flex: 1;
+            margin-right: 280px;
+            padding: 24px;
+        }
+
+        .settings-section {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .settings-header {
+            padding: 24px 24px 0;
+            border-bottom: 1px solid #dadce0;
+            margin-bottom: 24px;
+        }
+
+        .settings-title {
+            font-size: 24px;
+            font-weight: 400;
+            color: #202124;
+            margin-bottom: 8px;
+        }
+
+        .settings-subtitle {
+            font-size: 14px;
+            color: #5f6368;
+            margin-bottom: 24px;
+        }
+
+        .settings-body {
+            padding: 0 24px 24px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #5f6368;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 13px 15px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.2s ease;
+            background: #ffffff;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #1a73e8;
+            border-width: 2px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 16px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .btn-primary {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background: #1557b0;
+        }
+
+        .btn-secondary {
+            background: #ffffff;
+            color: #1a73e8;
+            border: 1px solid #dadce0;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #f8f9fa;
+        }
+
+        .btn-danger {
+            background: #ea4335;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-danger:hover {
+            background: #d33b2c;
+        }
+
+        .profile-photo-section {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .profile-photo {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            background: #1a73e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 36px;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-upload-btn {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .photo-upload-btn:hover {
+            background: #1557b0;
+        }
+
+        .photo-remove-btn {
+            background: #ea4335;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .photo-remove-btn:hover {
+            background: #d33b2c;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 20px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 4px;
+        }
+
+        .profile-email {
+            font-size: 14px;
+            color: #5f6368;
+            margin-bottom: 8px;
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid #dadce0;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a73e8;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #5f6368;
+            font-weight: 500;
+        }
+
+        .course-progress {
+            margin-bottom: 16px;
+        }
+
+        .course-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            background: #dadce0;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 4px;
+        }
+
+        .progress-fill {
+            background: #1a73e8;
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 12px;
+            color: #5f6368;
+        }
+
+        .settings-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid #dadce0;
+        }
+
+        .settings-option:last-child {
+            border-bottom: none;
+        }
+
+        .setting-info {
+            flex: 1;
+        }
+
+        .setting-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 4px;
+        }
+
+        .setting-description {
+            font-size: 12px;
+            color: #5f6368;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 24px;
+            background: #dadce0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background: #1a73e8;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-switch.active::after {
+            transform: translateX(26px);
+        }
+
+        .danger-zone {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 24px;
+        }
+
+        .danger-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #dc2626;
+            margin-bottom: 8px;
+        }
+
+        .danger-description {
+            font-size: 14px;
+            color: #7f1d1d;
+            margin-bottom: 16px;
+        }
+
+        .security-notice {
+            background: #e8f0fe;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            padding: 12px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            color: #1a73e8;
+        }
+
+        .security-notice .icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-left: 8px;
+        }
+
+        .error-message {
+            color: #ea4335;
+            font-size: 12px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .sidebar-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .settings-sidebar {
+                position: fixed;
+                top: 0;
+                right: -280px;
+                width: 280px;
+                height: 100vh;
+                transition: right 0.3s ease;
+                z-index: 1000;
+            }
+
+            .settings-sidebar.open {
+                right: 0;
+            }
+
+            .settings-content {
+                margin-right: 0;
+                padding: 16px;
+            }
+
+            .sidebar-toggle {
+                display: block;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Profile Container -->
+    <div class="profile-container">
+        <!-- Settings Sidebar -->
+        <div class="settings-sidebar" id="settingsSidebar">
+            <ul class="settings-nav">
+                <li class="settings-nav-item">
+                    <a href="#personal-info" class="settings-nav-link active" data-section="personal-info">
+                        <span class="settings-nav-icon">👤</span>
+                        <span>المعلومات الشخصية</span>
+                    </a>
+                </li>
+                <li class="settings-nav-item">
+                    <a href="#security" class="settings-nav-link" data-section="security">
+                        <span class="settings-nav-icon">🔒</span>
+                        <span>الأمان</span>
+                    </a>
+                </li>
+                <li class="settings-nav-item">
+                    <a href="#privacy" class="settings-nav-link" data-section="privacy">
+                        <span class="settings-nav-icon">🛡️</span>
+                        <span>الخصوصية</span>
+                    </a>
+                </li>
+                <li class="settings-nav-item">
+                    <a href="#notifications" class="settings-nav-link" data-section="notifications">
+                        <span class="settings-nav-icon">🔔</span>
+                        <span>الإشعارات</span>
+                    </a>
+                </li>
+                <li class="settings-nav-item">
+                    <a href="#course-progress" class="settings-nav-link" data-section="course-progress">
+                        <span class="settings-nav-icon">📚</span>
+                        <span>تقدم الكورسات</span>
+                    </a>
+                </li>
+                <li class="settings-nav-item">
+                    <a href="#account-settings" class="settings-nav-link" data-section="account-settings">
+                        <span class="settings-nav-icon">⚙️</span>
+                        <span>إعدادات الحساب</span>
+                    </a>
+                </li>
+                <li class="settings-nav-item">
+                    <a href="#help" class="settings-nav-link" data-section="help">
+                        <span class="settings-nav-icon">❓</span>
+                        <span>المساعدة</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Settings Content -->
+        <div class="settings-content">
+            <!-- Personal Information Section -->
+            <div id="personal-info-section" class="settings-section">
+                <div class="settings-header">
+                    <h1 class="settings-title">المعلومات الشخصية</h1>
+                    <p class="settings-subtitle">إدارة معلوماتك الشخصية وصورة الملف الشخصي</p>
+                </div>
+                <div class="settings-body">
+                    <!-- Profile Photo -->
+                    <div class="profile-photo-section">
+                        <div class="profile-photo" id="profilePhoto">
+                            <span id="profileInitials">أ</span>
+                        </div>
+                        <div class="profile-info">
+                            <div class="profile-name" id="profileName">أحمد محمد</div>
+                            <div class="profile-email" id="profileEmail">ahmed@example.com</div>
+                            <div style="margin-top: 12px;">
+                                <input type="file" id="photoUpload" accept="image/*" style="display: none;">
+                                <button class="photo-upload-btn" onclick="document.getElementById('photoUpload').click()">
+                                    تغيير الصورة
+                                </button>
+                                <button class="photo-remove-btn" id="removePhotoBtn" style="margin-right: 8px;">
+                                    إزالة الصورة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Personal Information Form -->
+                    <form id="personalInfoForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="firstName">الاسم الأول</label>
+                                <input type="text" id="firstName" name="firstName" class="form-input" value="أحمد">
+                                <div class="error-message" id="firstNameError"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="lastName">الاسم الأخير</label>
+                                <input type="text" id="lastName" name="lastName" class="form-input" value="محمد">
+                                <div class="error-message" id="lastNameError"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="email">البريد الإلكتروني</label>
+                            <input type="email" id="email" name="email" class="form-input" value="ahmed@example.com">
+                            <div class="error-message" id="emailError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="phone">رقم الهاتف</label>
+                            <input type="tel" id="phone" name="phone" class="form-input" value="+966 50 123 4567">
+                            <div class="error-message" id="phoneError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="country">البلد</label>
+                            <select id="country" name="country" class="form-input">
+                                <option value="SA" selected>السعودية</option>
+                                <option value="AE">الإمارات</option>
+                                <option value="KW">الكويت</option>
+                                <option value="QA">قطر</option>
+                                <option value="BH">البحرين</option>
+                                <option value="OM">عمان</option>
+                            </select>
+                            <div class="error-message" id="countryError"></div>
+                        </div>
+
+                        <button type="submit" class="btn-primary">
+                            حفظ التغييرات
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Security Section -->
+            <div id="security-section" class="settings-section hidden">
+                <div class="settings-header">
+                    <h1 class="settings-title">الأمان</h1>
+                    <p class="settings-subtitle">إدارة كلمة المرور وإعدادات الأمان</p>
+                </div>
+                <div class="settings-body">
+                    <div class="security-notice">
+                        <span class="icon">🔒</span>
+                        <span>لحماية حسابك، استخدم كلمة مرور قوية وفريدة</span>
+                    </div>
+
+                    <form id="changePasswordForm">
+                        <div class="form-group">
+                            <label class="form-label" for="currentPassword">كلمة المرور الحالية</label>
+                            <input type="password" id="currentPassword" name="currentPassword" class="form-input">
+                            <div class="error-message" id="currentPasswordError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="newPassword">كلمة المرور الجديدة</label>
+                            <input type="password" id="newPassword" name="newPassword" class="form-input">
+                            <div class="error-message" id="newPasswordError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="confirmNewPassword">تأكيد كلمة المرور الجديدة</label>
+                            <input type="password" id="confirmNewPassword" name="confirmNewPassword" class="form-input">
+                            <div class="error-message" id="confirmNewPasswordError"></div>
+                        </div>
+
+                        <button type="submit" class="btn-primary">
+                            تغيير كلمة المرور
+                        </button>
+                    </form>
+
+                    <div class="danger-zone">
+                        <h3 class="danger-title">منطقة الخطر</h3>
+                        <p class="danger-description">هذه الإجراءات لا يمكن التراجع عنها</p>
+                        <button type="button" class="btn-danger" id="deleteAccountBtn">
+                            حذف الحساب
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Privacy Section -->
+            <div id="privacy-section" class="settings-section hidden">
+                <div class="settings-header">
+                    <h1 class="settings-title">الخصوصية</h1>
+                    <p class="settings-subtitle">إدارة إعدادات الخصوصية والأمان</p>
+                </div>
+                <div class="settings-body">
+                    <div class="settings-option">
+                        <div class="setting-info">
+                            <div class="setting-label">الملف الشخصي العام</div>
+                            <div class="setting-description">السماح للآخرين برؤية ملفك الشخصي</div>
+                        </div>
+                        <div class="toggle-switch active" data-setting="publicProfile"></div>
+                    </div>
+
+                    <div class="settings-option">
+                        <div class="setting-info">
+                            <div class="setting-label">إظهار التقدم</div>
+                            <div class="setting-description">إظهار تقدمك في الكورسات للآخرين</div>
+                        </div>
+                        <div class="toggle-switch active" data-setting="showProgress"></div>
+                    </div>
+
+                    <div class="settings-option">
+                        <div class="setting-info">
+                            <div class="setting-label">البحث في الملف الشخصي</div>
+                            <div class="setting-description">السماح بالبحث عن ملفك الشخصي</div>
+                        </div>
+                        <div class="toggle-switch active" data-setting="profileSearch"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications Section -->
+            <div id="notifications-section" class="settings-section hidden">
+                <div class="settings-header">
+                    <h1 class="settings-title">الإشعارات</h1>
+                    <p class="settings-subtitle">إدارة إعدادات الإشعارات</p>
+                </div>
+                <div class="settings-body">
+                    <div class="settings-option">
+                        <div class="setting-info">
+                            <div class="setting-label">النشرة الإخبارية</div>
+                            <div class="setting-description">تلقي تحديثات حول الكورسات الجديدة</div>
+                        </div>
+                        <div class="toggle-switch active" data-setting="newsletter"></div>
+                    </div>
+
+                    <div class="settings-option">
+                        <div class="setting-info">
+                            <div class="setting-label">إشعارات التقدم</div>
+                            <div class="setting-description">تلقي إشعارات حول التقدم والإنجازات</div>
+                        </div>
+                        <div class="toggle-switch active" data-setting="progressNotifications"></div>
+                    </div>
+
+                    <div class="settings-option">
+                        <div class="setting-info">
+                            <div class="setting-label">إشعارات البريد الإلكتروني</div>
+                            <div class="setting-description">تلقي الإشعارات عبر البريد الإلكتروني</div>
+                        </div>
+                        <div class="toggle-switch active" data-setting="emailNotifications"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course Progress Section -->
+            <div id="course-progress-section" class="settings-section hidden">
+                <div class="settings-header">
+                    <h1 class="settings-title">تقدم الكورسات</h1>
+                    <p class="settings-subtitle">عرض تقدمك في جميع الكورسات</p>
+                </div>
+                <div class="settings-body">
+                    <div class="profile-stats">
+                        <div class="stat-card">
+                            <div class="stat-number" id="completedCourses">2</div>
+                            <div class="stat-label">الكورسات المكتملة</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalLessons">15</div>
+                            <div class="stat-label">الدروس المكتملة</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="studyHours">22.5</div>
+                            <div class="stat-label">ساعات الدراسة</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="certificates">2</div>
+                            <div class="stat-label">الشهادات</div>
+                        </div>
+                    </div>
+
+                    <div id="courseProgressList">
+                        <div class="course-progress">
+                            <div class="course-name">HTML & CSS</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                            <div class="progress-text">10 من 10 دروس مكتملة</div>
+                        </div>
+                        <div class="course-progress">
+                            <div class="course-name">JavaScript</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 50%"></div>
+                            </div>
+                            <div class="progress-text">5 من 10 دروس مكتملة</div>
+                        </div>
+                        <div class="course-progress">
+                            <div class="course-name">Python</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="progress-text">0 من 8 دروس مكتملة</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Settings Section -->
+            <div id="account-settings-section" class="settings-section hidden">
+                <div class="settings-header">
+                    <h1 class="settings-title">إعدادات الحساب</h1>
+                    <p class="settings-subtitle">إدارة إعدادات حسابك</p>
+                </div>
+                <div class="settings-body">
+                    <div class="settings-option">
+                        <div class="setting-info">
+                            <div class="setting-label">الوضع المظلم</div>
+                            <div class="setting-description">استخدام الوضع المظلم في الموقع</div>
+                        </div>
+                        <div class="toggle-switch" data-setting="darkMode"></div>
+                    </div>
+
+                    <div class="settings-option">
+                        <div class="setting-info">
+                            <div class="setting-label">اللغة</div>
+                            <div class="setting-description">اختيار لغة الواجهة</div>
+                        </div>
+                        <select class="form-input" style="width: auto; margin: 0;">
+                            <option value="ar" selected>العربية</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Help Section -->
+            <div id="help-section" class="settings-section hidden">
+                <div class="settings-header">
+                    <h1 class="settings-title">المساعدة</h1>
+                    <p class="settings-subtitle">الحصول على المساعدة والدعم</p>
+                </div>
+                <div class="settings-body">
+                    <div class="form-group">
+                        <label class="form-label">الأسئلة الشائعة</label>
+                        <div style="margin-top: 16px;">
+                            <a href="#" class="btn-secondary" style="margin-bottom: 8px; display: block; text-align: center;">
+                                كيف يمكنني تغيير كلمة المرور؟
+                            </a>
+                            <a href="#" class="btn-secondary" style="margin-bottom: 8px; display: block; text-align: center;">
+                                كيف يمكنني حذف حسابي؟
+                            </a>
+                            <a href="#" class="btn-secondary" style="margin-bottom: 8px; display: block; text-align: center;">
+                                كيف يمكنني تحديث معلوماتي؟
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">تواصل معنا</label>
+                        <p style="color: #5f6368; margin-top: 8px;">
+                            البريد الإلكتروني: mmhnoopm@gmail.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Sidebar Toggle -->
+    <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+    <div class="overlay" id="overlay"></div>
+
+    <script>
+        // Professional Profile Manager
+        class ProfessionalProfileManager {
+            constructor() {
+                this.currentSection = 'personal-info';
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.setupSidebarNavigation();
+                this.setupToggleSwitches();
+                this.setupPhotoUpload();
+                this.loadUserProfile();
+            }
+
+            setupEventListeners() {
+                // Personal info form
+                document.getElementById('personalInfoForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.updatePersonalInfo();
+                });
+
+                // Change password form
+                document.getElementById('changePasswordForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.changePassword();
+                });
+
+                // Delete account
+                document.getElementById('deleteAccountBtn').addEventListener('click', () => {
+                    this.deleteAccount();
+                });
+
+                // Photo upload
+                document.getElementById('photoUpload').addEventListener('change', (e) => {
+                    this.handlePhotoUpload(e);
+                });
+
+                // Remove photo
+                document.getElementById('removePhotoBtn').addEventListener('click', () => {
+                    this.removePhoto();
+                });
+
+                // Mobile sidebar toggle
+                document.getElementById('sidebarToggle').addEventListener('click', () => {
+                    this.toggleSidebar();
+                });
+
+                document.getElementById('overlay').addEventListener('click', () => {
+                    this.closeSidebar();
+                });
+            }
+
+            setupSidebarNavigation() {
+                const navLinks = document.querySelectorAll('.settings-nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const section = link.getAttribute('data-section');
+                        this.showSection(section);
+                        
+                        // Update active state
+                        navLinks.forEach(navLink => navLink.classList.remove('active'));
+                        link.classList.add('active');
+                        
+                        // Close mobile sidebar
+                        this.closeSidebar();
+                    });
+                });
+            }
+
+            setupToggleSwitches() {
+                const toggles = document.querySelectorAll('.toggle-switch');
+                toggles.forEach(toggle => {
+                    toggle.addEventListener('click', () => {
+                        toggle.classList.toggle('active');
+                        const setting = toggle.getAttribute('data-setting');
+                        this.saveSetting(setting, toggle.classList.contains('active'));
+                    });
+                });
+            }
+
+            setupPhotoUpload() {
+                // Initialize with current photo or initials
+                this.updateProfilePhoto();
+            }
+
+            showSection(sectionId) {
+                // Hide all sections
+                document.querySelectorAll('.settings-section').forEach(section => {
+                    section.classList.add('hidden');
+                });
+
+                // Show selected section
+                document.getElementById(`${sectionId}-section`).classList.remove('hidden');
+                this.currentSection = sectionId;
+            }
+
+            async loadUserProfile() {
+                const token = localStorage.getItem('authToken');
+                if (!token) {
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                try {
+                    const response = await fetch('http://localhost:3000/api/profile', {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        this.displayUserProfile(data.user);
+                    } else {
+                        throw new Error('Failed to load profile');
+                    }
+                } catch (error) {
+                    console.error('Error loading profile:', error);
+                    this.showNotification('خطأ في تحميل الملف الشخصي', 'error');
+                }
+            }
+
+            displayUserProfile(user) {
+                // Update profile header
+                document.getElementById('profileName').textContent = `${user.firstName} ${user.lastName}`;
+                document.getElementById('profileEmail').textContent = user.email;
+                document.getElementById('profileInitials').textContent = user.firstName.charAt(0);
+
+                // Update form fields
+                document.getElementById('firstName').value = user.firstName;
+                document.getElementById('lastName').value = user.lastName;
+                document.getElementById('email').value = user.email;
+                document.getElementById('phone').value = user.phone || '';
+                document.getElementById('country').value = user.country || '';
+
+                // Update profile photo
+                this.updateProfilePhoto();
+            }
+
+            updateProfilePhoto() {
+                const profilePhoto = document.getElementById('profilePhoto');
+                const profileInitials = document.getElementById('profileInitials');
+                
+                // Check if user has uploaded photo
+                const userPhoto = localStorage.getItem('userPhoto');
+                if (userPhoto) {
+                    profilePhoto.innerHTML = `<img src="${userPhoto}" alt="Profile Photo">`;
+                } else {
+                    profilePhoto.innerHTML = `<span id="profileInitials">${document.getElementById('firstName').value.charAt(0)}</span>`;
+                }
+            }
+
+            handlePhotoUpload(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        // Save photo to localStorage (in real app, upload to server)
+                        localStorage.setItem('userPhoto', e.target.result);
+                        this.updateProfilePhoto();
+                        this.showNotification('تم تحديث صورة الملف الشخصي', 'success');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+
+            removePhoto() {
+                localStorage.removeItem('userPhoto');
+                this.updateProfilePhoto();
+                this.showNotification('تم إزالة صورة الملف الشخصي', 'success');
+            }
+
+            async updatePersonalInfo() {
+                const token = localStorage.getItem('authToken');
+                const formData = {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    country: document.getElementById('country').value
+                };
+
+                try {
+                    const response = await fetch('http://localhost:3000/api/profile', {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    if (response.ok) {
+                        this.showNotification('تم تحديث المعلومات بنجاح', 'success');
+                        this.loadUserProfile();
+                    } else {
+                        throw new Error('Failed to update profile');
+                    }
+                } catch (error) {
+                    console.error('Error updating profile:', error);
+                    this.showNotification('خطأ في تحديث المعلومات', 'error');
+                }
+            }
+
+            async changePassword() {
+                const currentPassword = document.getElementById('currentPassword').value;
+                const newPassword = document.getElementById('newPassword').value;
+                const confirmPassword = document.getElementById('confirmNewPassword').value;
+
+                if (!currentPassword || !newPassword || !confirmPassword) {
+                    this.showNotification('يرجى ملء جميع الحقول', 'error');
+                    return;
+                }
+
+                if (newPassword !== confirmPassword) {
+                    this.showNotification('كلمة المرور غير متطابقة', 'error');
+                    return;
+                }
+
+                if (newPassword.length < 8) {
+                    this.showNotification('كلمة المرور يجب أن تكون 8 أحرف على الأقل', 'error');
+                    return;
+                }
+
+                const token = localStorage.getItem('authToken');
+                try {
+                    const response = await fetch('http://localhost:3000/api/change-password', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({
+                            currentPassword,
+                            newPassword
+                        })
+                    });
+
+                    if (response.ok) {
+                        this.showNotification('تم تغيير كلمة المرور بنجاح', 'success');
+                        document.getElementById('changePasswordForm').reset();
+                    } else {
+                        throw new Error('Failed to change password');
+                    }
+                } catch (error) {
+                    console.error('Error changing password:', error);
+                    this.showNotification('خطأ في تغيير كلمة المرور', 'error');
+                }
+            }
+
+            async deleteAccount() {
+                if (!confirm('هل أنت متأكد من حذف الحساب؟ هذا الإجراء لا يمكن التراجع عنه.')) {
+                    return;
+                }
+
+                const token = localStorage.getItem('authToken');
+                try {
+                    const response = await fetch('http://localhost:3000/api/delete-account', {
+                        method: 'DELETE',
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+
+                    if (response.ok) {
+                        localStorage.removeItem('authToken');
+                        localStorage.removeItem('userPhoto');
+                        this.showNotification('تم حذف الحساب بنجاح', 'success');
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 2000);
+                    } else {
+                        throw new Error('Failed to delete account');
+                    }
+                } catch (error) {
+                    console.error('Error deleting account:', error);
+                    this.showNotification('خطأ في حذف الحساب', 'error');
+                }
+            }
+
+            saveSetting(setting, value) {
+                localStorage.setItem(`setting_${setting}`, value);
+                this.showNotification('تم حفظ الإعداد', 'success');
+            }
+
+            toggleSidebar() {
+                const sidebar = document.getElementById('settingsSidebar');
+                const overlay = document.getElementById('overlay');
+                
+                sidebar.classList.toggle('open');
+                overlay.classList.toggle('active');
+            }
+
+            closeSidebar() {
+                const sidebar = document.getElementById('settingsSidebar');
+                const overlay = document.getElementById('overlay');
+                
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+            }
+
+            showNotification(message, type) {
+                const notification = document.createElement('div');
+                notification.className = `notification notification-${type}`;
+                notification.textContent = message;
+                
+                Object.assign(notification.style, {
+                    position: 'fixed',
+                    top: '20px',
+                    right: '20px',
+                    padding: '1rem 2rem',
+                    borderRadius: '0.5rem',
+                    color: 'white',
+                    fontWeight: '500',
+                    zIndex: '10000',
+                    transform: 'translateX(100%)',
+                    transition: 'transform 0.3s ease',
+                    backgroundColor: type === 'success' ? '#10b981' : 
+                                   type === 'error' ? '#ef4444' : '#3b82f6'
+                });
+
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(0)';
+                }, 100);
+
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.parentNode.removeChild(notification);
+                        }
+                    }, 300);
+                }, 3000);
+            }
+        }
+
+        // Initialize the professional profile manager
+        const professionalProfile = new ProfessionalProfileManager();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - دورة البرمجة</title>
+    <link rel="icon" type="image/jpeg" href="images/دورة برمجة بخلفية نيون.png"/>
+    <meta name="description" content="لوحة التحكم الشخصية في دورة البرمجة">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', 'Poppins', sans-serif;
+            background: #f8f9fa;
+            color: #202124;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-theme {
+            background: #121212;
+            color: #ffffff;
+        }
+
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: #ffffff;
+            border-left: 1px solid #dadce0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-theme .sidebar {
+            background: #1e1e1e;
+            border-color: #333333;
+        }
+
+        .sidebar-header {
+            padding: 24px;
+            border-bottom: 1px solid #dadce0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        body.dark-theme .sidebar-header {
+            border-color: #333333;
+        }
+
+        .user-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #4285f4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .user-info h3 {
+            font-size: 16px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 2px;
+        }
+
+        body.dark-theme .user-info h3 {
+            color: #ffffff;
+        }
+
+        .user-info p {
+            font-size: 12px;
+            color: #5f6368;
+        }
+
+        body.dark-theme .user-info p {
+            color: #cccccc;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 16px 0;
+        }
+
+        .nav-item {
+            margin-bottom: 4px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            color: #5f6368;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border-right: 3px solid transparent;
+        }
+
+        .nav-link:hover {
+            background: #f8f9fa;
+            color: #202124;
+        }
+
+        body.dark-theme .nav-link:hover {
+            background: #2d2d2d;
+            color: #ffffff;
+        }
+
+        .nav-link.active {
+            background: #e8f0fe;
+            color: #1a73e8;
+            border-right-color: #1a73e8;
+        }
+
+        body.dark-theme .nav-link.active {
+            background: #1a73e8;
+            color: #ffffff;
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-badge {
+            background: #ea4335;
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-right: auto;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-right: 280px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .dashboard-title {
+            font-size: 28px;
+            font-weight: 400;
+            color: #202124;
+        }
+
+        body.dark-theme .dashboard-title {
+            color: #ffffff;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .theme-toggle {
+            background: #f8f9fa;
+            border: 1px solid #dadce0;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.2s ease;
+        }
+
+        body.dark-theme .theme-toggle {
+            background: #2d2d2d;
+            border-color: #444444;
+            color: #ffffff;
+        }
+
+        .theme-toggle:hover {
+            background: #e8f0fe;
+        }
+
+        body.dark-theme .theme-toggle:hover {
+            background: #3d3d3d;
+        }
+
+        .notification-btn {
+            position: relative;
+            background: #f8f9fa;
+            border: 1px solid #dadce0;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.2s ease;
+        }
+
+        body.dark-theme .notification-btn {
+            background: #2d2d2d;
+            border-color: #444444;
+            color: #ffffff;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background: #ea4335;
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .dashboard-card {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+            padding: 24px;
+            border: 1px solid #dadce0;
+        }
+
+        body.dark-theme .dashboard-card {
+            background: #1e1e1e;
+            border-color: #333333;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: #202124;
+        }
+
+        body.dark-theme .card-title {
+            color: #ffffff;
+        }
+
+        .card-action {
+            color: #1a73e8;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .card-action:hover {
+            text-decoration: underline;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid #dadce0;
+        }
+
+        body.dark-theme .stat-card {
+            background: #2d2d2d;
+            border-color: #444444;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a73e8;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #5f6368;
+            font-weight: 500;
+        }
+
+        body.dark-theme .stat-label {
+            color: #cccccc;
+        }
+
+        .course-progress {
+            margin-bottom: 16px;
+        }
+
+        .course-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 8px;
+        }
+
+        body.dark-theme .course-name {
+            color: #ffffff;
+        }
+
+        .progress-bar {
+            background: #dadce0;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 4px;
+        }
+
+        body.dark-theme .progress-bar {
+            background: #444444;
+        }
+
+        .progress-fill {
+            background: #1a73e8;
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 12px;
+            color: #5f6368;
+        }
+
+        body.dark-theme .progress-text {
+            color: #cccccc;
+        }
+
+        .recent-activity {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #dadce0;
+        }
+
+        body.dark-theme .activity-item {
+            border-color: #333333;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #e8f0fe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #1a73e8;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 2px;
+        }
+
+        body.dark-theme .activity-title {
+            color: #ffffff;
+        }
+
+        .activity-time {
+            font-size: 12px;
+            color: #5f6368;
+        }
+
+        body.dark-theme .activity-time {
+            color: #cccccc;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                right: -280px;
+                width: 280px;
+                height: 100vh;
+                transition: right 0.3s ease;
+                z-index: 1000;
+            }
+
+            .sidebar.open {
+                right: 0;
+            }
+
+            .main-content {
+                margin-right: 0;
+                padding: 16px;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <!-- Sidebar Header -->
+            <div class="sidebar-header">
+                <div class="user-avatar" id="userAvatar">أ</div>
+                <div class="user-info">
+                    <h3 id="userName">أحمد محمد</h3>
+                    <p id="userEmail">ahmed@example.com</p>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <ul class="sidebar-nav">
+                <li class="nav-item">
+                    <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                        <span class="nav-icon">🏠</span>
+                        <span>لوحة التحكم</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#courses" class="nav-link" data-section="courses">
+                        <span class="nav-icon">📚</span>
+                        <span>الكورسات</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#progress" class="nav-link" data-section="progress">
+                        <span class="nav-icon">📊</span>
+                        <span>التقدم</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#certificates" class="nav-link" data-section="certificates">
+                        <span class="nav-icon">🏆</span>
+                        <span>الشهادات</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#profile" class="nav-link" data-section="profile">
+                        <span class="nav-icon">👤</span>
+                        <span>الملف الشخصي</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#settings" class="nav-link" data-section="settings">
+                        <span class="nav-icon">⚙️</span>
+                        <span>الإعدادات</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#security" class="nav-link" data-section="security">
+                        <span class="nav-icon">🔒</span>
+                        <span>الأمان</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#notifications" class="nav-link" data-section="notifications">
+                        <span class="nav-icon">🔔</span>
+                        <span>الإشعارات</span>
+                        <span class="nav-badge">3</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#help" class="nav-link" data-section="help">
+                        <span class="nav-icon">❓</span>
+                        <span>المساعدة</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#logout" class="nav-link" data-section="logout">
+                        <span class="nav-icon">🚪</span>
+                        <span>تسجيل الخروج</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Dashboard Header -->
+            <div class="dashboard-header">
+                <h1 class="dashboard-title" id="pageTitle">لوحة التحكم</h1>
+                <div class="header-actions">
+                    <button class="theme-toggle" id="themeToggle">🌙</button>
+                    <button class="notification-btn" id="notificationBtn">
+                        🔔
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dashboard Content -->
+            <div id="dashboard-content">
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">الكورسات المكتملة</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">الدروس المكتملة</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">22.5</div>
+                        <div class="stat-label">ساعات الدراسة</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">الشهادات</div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Grid -->
+                <div class="dashboard-grid">
+                    <!-- Course Progress -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3 class="card-title">تقدم الكورسات</h3>
+                            <a href="#" class="card-action">عرض الكل</a>
+                        </div>
+                        <div class="course-progress">
+                            <div class="course-name">HTML & CSS</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                            <div class="progress-text">10 من 10 دروس مكتملة</div>
+                        </div>
+                        <div class="course-progress">
+                            <div class="course-name">JavaScript</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 50%"></div>
+                            </div>
+                            <div class="progress-text">5 من 10 دروس مكتملة</div>
+                        </div>
+                        <div class="course-progress">
+                            <div class="course-name">Python</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="progress-text">0 من 8 دروس مكتملة</div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3 class="card-title">النشاط الأخير</h3>
+                            <a href="#" class="card-action">عرض الكل</a>
+                        </div>
+                        <div class="recent-activity">
+                            <div class="activity-item">
+                                <div class="activity-icon">📚</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">أكملت درس JavaScript الأساسي</div>
+                                    <div class="activity-time">منذ ساعتين</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">🏆</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">حصلت على شهادة HTML & CSS</div>
+                                    <div class="activity-time">منذ 3 أيام</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">📊</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">تحديث التقدم في كورس Python</div>
+                                    <div class="activity-time">منذ أسبوع</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3 class="card-title">الإجراءات السريعة</h3>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <a href="courses.html" class="card-action" style="display: block; padding: 12px; background: #f8f9fa; border-radius: 8px; text-align: center;">
+                                📚 تصفح الكورسات
+                            </a>
+                            <a href="profile.html" class="card-action" style="display: block; padding: 12px; background: #f8f9fa; border-radius: 8px; text-align: center;">
+                                👤 تحديث الملف الشخصي
+                            </a>
+                            <a href="contact.html" class="card-action" style="display: block; padding: 12px; background: #f8f9fa; border-radius: 8px; text-align: center;">
+                                📞 التواصل معنا
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+    <div class="overlay" id="overlay"></div>
+
+    <script>
+        // Professional Dashboard Manager
+        class ProfessionalDashboardManager {
+            constructor() {
+                this.currentSection = 'dashboard';
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.setupThemeToggle();
+                this.setupSidebarNavigation();
+                this.loadUserProfile();
+            }
+
+            setupEventListeners() {
+                // Mobile menu toggle
+                document.getElementById('mobileMenuToggle').addEventListener('click', () => {
+                    this.toggleSidebar();
+                });
+
+                // Overlay click
+                document.getElementById('overlay').addEventListener('click', () => {
+                    this.closeSidebar();
+                });
+
+                // Notification button
+                document.getElementById('notificationBtn').addEventListener('click', () => {
+                    this.showNotifications();
+                });
+            }
+
+            setupThemeToggle() {
+                const themeToggle = document.getElementById('themeToggle');
+                if (themeToggle) {
+                    // Load saved theme
+                    const savedTheme = localStorage.getItem('theme') || 'light';
+                    if (savedTheme === 'dark') {
+                        document.body.classList.add('dark-theme');
+                        themeToggle.textContent = '☀️';
+                    }
+
+                    themeToggle.addEventListener('click', () => {
+                        document.body.classList.toggle('dark-theme');
+                        const isDark = document.body.classList.contains('dark-theme');
+                        themeToggle.textContent = isDark ? '☀️' : '🌙';
+                        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                    });
+                }
+            }
+
+            setupSidebarNavigation() {
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const section = link.getAttribute('data-section');
+                        
+                        if (section === 'logout') {
+                            this.logout();
+                            return;
+                        }
+
+                        this.showSection(section);
+                        
+                        // Update active state
+                        navLinks.forEach(navLink => navLink.classList.remove('active'));
+                        link.classList.add('active');
+                        
+                        // Close mobile sidebar
+                        this.closeSidebar();
+                    });
+                });
+            }
+
+            showSection(sectionId) {
+                this.currentSection = sectionId;
+                
+                // Update page title
+                const titles = {
+                    'dashboard': 'لوحة التحكم',
+                    'courses': 'الكورسات',
+                    'progress': 'التقدم',
+                    'certificates': 'الشهادات',
+                    'profile': 'الملف الشخصي',
+                    'settings': 'الإعدادات',
+                    'security': 'الأمان',
+                    'notifications': 'الإشعارات',
+                    'help': 'المساعدة'
+                };
+
+                document.getElementById('pageTitle').textContent = titles[sectionId] || 'لوحة التحكم';
+
+                // Show appropriate content
+                this.loadSectionContent(sectionId);
+            }
+
+            loadSectionContent(sectionId) {
+                const content = document.getElementById('dashboard-content');
+                
+                switch (sectionId) {
+                    case 'dashboard':
+                        content.innerHTML = this.getDashboardContent();
+                        break;
+                    case 'courses':
+                        content.innerHTML = this.getCoursesContent();
+                        break;
+                    case 'progress':
+                        content.innerHTML = this.getProgressContent();
+                        break;
+                    case 'certificates':
+                        content.innerHTML = this.getCertificatesContent();
+                        break;
+                    case 'profile':
+                        window.location.href = 'profile.html';
+                        break;
+                    case 'settings':
+                        content.innerHTML = this.getSettingsContent();
+                        break;
+                    case 'security':
+                        content.innerHTML = this.getSecurityContent();
+                        break;
+                    case 'notifications':
+                        content.innerHTML = this.getNotificationsContent();
+                        break;
+                    case 'help':
+                        content.innerHTML = this.getHelpContent();
+                        break;
+                }
+            }
+
+            getDashboardContent() {
+                return `
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">2</div>
+                            <div class="stat-label">الكورسات المكتملة</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">15</div>
+                            <div class="stat-label">الدروس المكتملة</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">22.5</div>
+                            <div class="stat-label">ساعات الدراسة</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">2</div>
+                            <div class="stat-label">الشهادات</div>
+                        </div>
+                    </div>
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3 class="card-title">تقدم الكورسات</h3>
+                                <a href="#" class="card-action">عرض الكل</a>
+                            </div>
+                            <div class="course-progress">
+                                <div class="course-name">HTML & CSS</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 100%"></div>
+                                </div>
+                                <div class="progress-text">10 من 10 دروس مكتملة</div>
+                            </div>
+                            <div class="course-progress">
+                                <div class="course-name">JavaScript</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 50%"></div>
+                                </div>
+                                <div class="progress-text">5 من 10 دروس مكتملة</div>
+                            </div>
+                        </div>
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3 class="card-title">النشاط الأخير</h3>
+                                <a href="#" class="card-action">عرض الكل</a>
+                            </div>
+                            <div class="recent-activity">
+                                <div class="activity-item">
+                                    <div class="activity-icon">📚</div>
+                                    <div class="activity-content">
+                                        <div class="activity-title">أكملت درس JavaScript الأساسي</div>
+                                        <div class="activity-time">منذ ساعتين</div>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon">🏆</div>
+                                    <div class="activity-content">
+                                        <div class="activity-title">حصلت على شهادة HTML & CSS</div>
+                                        <div class="activity-time">منذ 3 أيام</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            getCoursesContent() {
+                return `
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3 class="card-title">الكورسات المتاحة</h3>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <a href="courses/html-course.html" class="card-action" style="display: block; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+                                    📚 HTML & CSS - مكتمل
+                                </a>
+                                <a href="courses/javascript-course.html" class="card-action" style="display: block; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+                                    📚 JavaScript - قيد التقدم
+                                </a>
+                                <a href="courses/python-course.html" class="card-action" style="display: block; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+                                    📚 Python - لم يبدأ
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            getProgressContent() {
+                return `
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3 class="card-title">إحصائيات التقدم</h3>
+                            </div>
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <div class="stat-number">75%</div>
+                                    <div class="stat-label">متوسط التقدم</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number">3</div>
+                                    <div class="stat-label">الكورسات النشطة</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number">12</div>
+                                    <div class="stat-label">الدروس هذا الأسبوع</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number">5</div>
+                                    <div class="stat-label">الأيام المتتالية</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            getCertificatesContent() {
+                return `
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3 class="card-title">الشهادات المحصل عليها</h3>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <div style="padding: 16px; border: 1px solid #dadce0; border-radius: 8px;">
+                                    <h4>شهادة HTML & CSS</h4>
+                                    <p style="color: #5f6368; margin: 8px 0;">تم الحصول عليها في 15 يناير 2025</p>
+                                    <a href="#" class="card-action">تحميل الشهادة</a>
+                                </div>
+                                <div style="padding: 16px; border: 1px solid #dadce0; border-radius: 8px;">
+                                    <h4>شهادة JavaScript</h4>
+                                    <p style="color: #5f6368; margin: 8px 0;">تم الحصول عليها في 20 يناير 2025</p>
+                                    <a href="#" class="card-action">تحميل الشهادة</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            getSettingsContent() {
+                return `
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3 class="card-title">إعدادات الحساب</h3>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 16px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span>الوضع المظلم</span>
+                                    <button class="theme-toggle" onclick="document.getElementById('themeToggle').click()">🌙</button>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span>الإشعارات</span>
+                                    <input type="checkbox" checked>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span>النشرة الإخبارية</span>
+                                    <input type="checkbox" checked>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            getSecurityContent() {
+                return `
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3 class="card-title">إعدادات الأمان</h3>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 16px;">
+                                <a href="#" class="card-action" style="display: block; padding: 12px; background: #f8f9fa; border-radius: 8px; text-align: center;">
+                                    🔒 تغيير كلمة المرور
+                                </a>
+                                <a href="#" class="card-action" style="display: block; padding: 12px; background: #f8f9fa; border-radius: 8px; text-align: center;">
+                                    📱 إدارة الأجهزة
+                                </a>
+                                <a href="#" class="card-action" style="display: block; padding: 12px; background: #f8f9fa; border-radius: 8px; text-align: center;">
+                                    🔐 المصادقة الثنائية
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            getNotificationsContent() {
+                return `
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3 class="card-title">الإشعارات</h3>
+                            </div>
+                            <div class="recent-activity">
+                                <div class="activity-item">
+                                    <div class="activity-icon">📚</div>
+                                    <div class="activity-content">
+                                        <div class="activity-title">درس جديد متاح في كورس JavaScript</div>
+                                        <div class="activity-time">منذ ساعة</div>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon">🏆</div>
+                                    <div class="activity-content">
+                                        <div class="activity-title">تهانينا! حصلت على شهادة جديدة</div>
+                                        <div class="activity-time">منذ 3 ساعات</div>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon">📊</div>
+                                    <div class="activity-content">
+                                        <div class="activity-title">تحديث في تقدمك الأسبوعي</div>
+                                        <div class="activity-time">منذ يوم</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            getHelpContent() {
+                return `
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3 class="card-title">المساعدة والدعم</h3>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <a href="#" class="card-action" style="display: block; padding: 12px; background: #f8f9fa; border-radius: 8px; text-align: center;">
+                                    ❓ الأسئلة الشائعة
+                                </a>
+                                <a href="#" class="card-action" style="display: block; padding: 12px; background: #f8f9fa; border-radius: 8px; text-align: center;">
+                                    📞 التواصل معنا
+                                </a>
+                                <a href="#" class="card-action" style="display: block; padding: 12px; background: #f8f9fa; border-radius: 8px; text-align: center;">
+                                    📧 البريد الإلكتروني: mmhnoopm@gmail.com
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            async loadUserProfile() {
+                const token = localStorage.getItem('authToken');
+                if (!token) {
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                try {
+                    const response = await fetch('http://localhost:3000/api/profile', {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        this.displayUserProfile(data.user);
+                    }
+                } catch (error) {
+                    console.error('Error loading profile:', error);
+                }
+            }
+
+            displayUserProfile(user) {
+                document.getElementById('userName').textContent = `${user.firstName} ${user.lastName}`;
+                document.getElementById('userEmail').textContent = user.email;
+                document.getElementById('userAvatar').textContent = user.firstName.charAt(0);
+            }
+
+            toggleSidebar() {
+                const sidebar = document.getElementById('sidebar');
+                const overlay = document.getElementById('overlay');
+                
+                sidebar.classList.toggle('open');
+                overlay.classList.toggle('active');
+            }
+
+            closeSidebar() {
+                const sidebar = document.getElementById('sidebar');
+                const overlay = document.getElementById('overlay');
+                
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+            }
+
+            showNotifications() {
+                this.showSection('notifications');
+            }
+
+            logout() {
+                localStorage.removeItem('authToken');
+                localStorage.removeItem('userPhoto');
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Initialize the professional dashboard manager
+        const professionalDashboard = new ProfessionalDashboardManager();
+    </script>
+</body>
+</html>

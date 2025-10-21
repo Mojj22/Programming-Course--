@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب - دورة البرمجة</title>
+    <link rel="icon" type="image/jpeg" href="images/دورة برمجة بخلفية نيون.png"/>
+    <meta name="description" content="أنشئ حسابك في دورة البرمجة للوصول إلى جميع الكورسات والموارد">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', 'Poppins', sans-serif;
+            background: #ffffff;
+            color: #202124;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .register-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            padding: 20px;
+        }
+
+        .register-card {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            padding: 48px 40px 36px;
+            width: 100%;
+            max-width: 450px;
+            border: 1px solid #dadce0;
+        }
+
+        .register-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .register-logo {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 16px;
+            background: linear-gradient(135deg, #4285f4, #34a853);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .register-title {
+            font-size: 24px;
+            font-weight: 400;
+            color: #202124;
+            margin-bottom: 8px;
+        }
+
+        .register-subtitle {
+            font-size: 16px;
+            color: #5f6368;
+            font-weight: 400;
+        }
+
+        .register-form {
+            margin-top: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #5f6368;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 13px 15px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.2s ease;
+            background: #ffffff;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #4285f4;
+            border-width: 2px;
+        }
+
+        .form-input.error {
+            border-color: #ea4335;
+        }
+
+        .error-message {
+            color: #ea4335;
+            font-size: 12px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 16px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .btn-primary {
+            width: 100%;
+            background: #4285f4;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-bottom: 24px;
+        }
+
+        .btn-primary:hover {
+            background: #3367d6;
+        }
+
+        .btn-primary:disabled {
+            background: #dadce0;
+            cursor: not-allowed;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 24px 0;
+            position: relative;
+            color: #5f6368;
+            font-size: 14px;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #dadce0;
+            z-index: 1;
+        }
+
+        .divider span {
+            background: #ffffff;
+            padding: 0 16px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .social-login {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn-social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 12px 24px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            background: #ffffff;
+            color: #3c4043;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-social:hover {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        }
+
+        .btn-google {
+            border-color: #dadce0;
+        }
+
+        .btn-facebook {
+            border-color: #1877f2;
+            color: #1877f2;
+        }
+
+        .social-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .register-footer {
+            text-align: center;
+            margin-top: 32px;
+            font-size: 14px;
+            color: #5f6368;
+        }
+
+        .register-link {
+            color: #4285f4;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .register-link:hover {
+            text-decoration: underline;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .verification-step {
+            display: none;
+        }
+
+        .verification-step.active {
+            display: block;
+        }
+
+        .verification-code {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin: 16px 0;
+        }
+
+        .code-input {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .code-input:focus {
+            outline: none;
+            border-color: #4285f4;
+            border-width: 2px;
+        }
+
+        .resend-code {
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .resend-link {
+            color: #4285f4;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .resend-link:hover {
+            text-decoration: underline;
+        }
+
+        .security-notice {
+            background: #e8f0fe;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            padding: 12px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            color: #1a73e8;
+        }
+
+        .security-notice .icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-left: 8px;
+        }
+
+        .terms-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            color: #5f6368;
+        }
+
+        .terms-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #4285f4;
+            margin-top: 2px;
+        }
+
+        .terms-link {
+            color: #4285f4;
+            text-decoration: none;
+        }
+
+        .terms-link:hover {
+            text-decoration: underline;
+        }
+
+        .password-strength {
+            margin-top: 8px;
+            font-size: 12px;
+        }
+
+        .strength-bar {
+            height: 4px;
+            background: #dadce0;
+            border-radius: 2px;
+            margin-top: 4px;
+            overflow: hidden;
+        }
+
+        .strength-fill {
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .strength-weak { background: #ea4335; width: 25%; }
+        .strength-fair { background: #fbbc04; width: 50%; }
+        .strength-good { background: #34a853; width: 75%; }
+        .strength-strong { background: #34a853; width: 100%; }
+
+        @media (max-width: 480px) {
+            .register-card {
+                padding: 24px 20px;
+                margin: 0;
+                box-shadow: none;
+                border: none;
+            }
+            
+            .register-title {
+                font-size: 20px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Register Container -->
+    <div class="register-container">
+        <div class="register-card">
+            <!-- Register Header -->
+            <div class="register-header">
+                <div class="register-logo">PC</div>
+                <h1 class="register-title">إنشاء حساب</h1>
+                <p class="register-subtitle">استخدم حسابك في دورة البرمجة</p>
+            </div>
+
+            <!-- Registration Form -->
+            <form id="registerForm" class="register-form">
+                <div id="basicInfoStep" class="verification-step active">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="firstName">الاسم الأول</label>
+                            <input type="text" id="firstName" name="firstName" class="form-input" placeholder="الاسم الأول" required>
+                            <div class="error-message" id="firstNameError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="lastName">الاسم الأخير</label>
+                            <input type="text" id="lastName" name="lastName" class="form-input" placeholder="الاسم الأخير" required>
+                            <div class="error-message" id="lastNameError"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="email">البريد الإلكتروني</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="أدخل بريدك الإلكتروني" required>
+                        <div class="error-message" id="emailError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="phone">رقم الهاتف (اختياري)</label>
+                        <input type="tel" id="phone" name="phone" class="form-input" placeholder="+966 50 123 4567">
+                        <div class="error-message" id="phoneError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="country">البلد</label>
+                        <select id="country" name="country" class="form-input" required>
+                            <option value="">اختر البلد</option>
+                            <option value="SA">السعودية</option>
+                            <option value="AE">الإمارات</option>
+                            <option value="KW">الكويت</option>
+                            <option value="QA">قطر</option>
+                            <option value="BH">البحرين</option>
+                            <option value="OM">عمان</option>
+                            <option value="EG">مصر</option>
+                            <option value="JO">الأردن</option>
+                            <option value="LB">لبنان</option>
+                            <option value="SY">سوريا</option>
+                            <option value="IQ">العراق</option>
+                            <option value="MA">المغرب</option>
+                            <option value="DZ">الجزائر</option>
+                            <option value="TN">تونس</option>
+                            <option value="LY">ليبيا</option>
+                            <option value="SD">السودان</option>
+                            <option value="YE">اليمن</option>
+                            <option value="OTHER">أخرى</option>
+                        </select>
+                        <div class="error-message" id="countryError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="experience">مستوى الخبرة</label>
+                        <select id="experience" name="experience" class="form-input" required>
+                            <option value="">اختر مستوى الخبرة</option>
+                            <option value="beginner">مبتدئ</option>
+                            <option value="intermediate">متوسط</option>
+                            <option value="advanced">متقدم</option>
+                            <option value="expert">خبير</option>
+                        </select>
+                        <div class="error-message" id="experienceError"></div>
+                    </div>
+
+                    <button type="button" class="btn-primary" id="nextToPasswordBtn">
+                        <span>التالي</span>
+                    </button>
+                </div>
+
+                <!-- Password Step -->
+                <div id="passwordStep" class="verification-step">
+                    <div class="form-group">
+                        <label class="form-label" for="password">كلمة المرور</label>
+                        <div style="position: relative;">
+                            <input type="password" id="password" name="password" class="form-input" placeholder="أدخل كلمة المرور" required style="padding-right: 50px;">
+                            <button type="button" id="togglePassword" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 18px;">👁️</button>
+                        </div>
+                        <div class="password-strength" id="passwordStrength"></div>
+                        <div class="error-message" id="passwordError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="confirmPassword">تأكيد كلمة المرور</label>
+                        <div style="position: relative;">
+                            <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" placeholder="أعد إدخال كلمة المرور" required style="padding-right: 50px;">
+                            <button type="button" id="toggleConfirmPassword" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 18px;">👁️</button>
+                        </div>
+                        <div class="error-message" id="confirmPasswordError"></div>
+                    </div>
+
+                    <div class="terms-checkbox">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">
+                            <span>أوافق على</span>
+                            <a href="#" class="terms-link">شروط الخدمة</a>
+                            <span>و</span>
+                            <a href="#" class="terms-link">سياسة الخصوصية</a>
+                        </label>
+                    </div>
+
+                    <div class="terms-checkbox">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <label for="newsletter">أريد تلقي النشرة الإخبارية والتحديثات</label>
+                    </div>
+
+                    <button type="button" class="btn-primary" id="nextToVerificationBtn">
+                        <span>التالي</span>
+                    </button>
+                </div>
+
+                <!-- Email Verification Step -->
+                <div id="emailVerificationStep" class="verification-step">
+                    <div class="security-notice">
+                        <span class="icon">🔒</span>
+                        <span>تم إرسال رمز التحقق إلى بريدك الإلكتروني</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">أدخل رمز التحقق</label>
+                        <div class="verification-code">
+                            <input type="text" class="code-input" maxlength="1" id="code1">
+                            <input type="text" class="code-input" maxlength="1" id="code2">
+                            <input type="text" class="code-input" maxlength="1" id="code3">
+                            <input type="text" class="code-input" maxlength="1" id="code4">
+                            <input type="text" class="code-input" maxlength="1" id="code5">
+                            <input type="text" class="code-input" maxlength="1" id="code6">
+                        </div>
+                        <div class="error-message" id="codeError"></div>
+                    </div>
+
+                    <div class="resend-code">
+                        <a href="#" class="resend-link" id="resendCode">إعادة إرسال الرمز</a>
+                    </div>
+
+                    <button type="button" class="btn-primary" id="verifyCodeBtn">
+                        <span>تحقق</span>
+                    </button>
+                </div>
+
+                <!-- Phone Verification Step (Optional) -->
+                <div id="phoneVerificationStep" class="verification-step">
+                    <div class="security-notice">
+                        <span class="icon">📱</span>
+                        <span>تحقق من رقم هاتفك (اختياري)</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">أدخل رمز التحقق</label>
+                        <div class="verification-code">
+                            <input type="text" class="code-input" maxlength="1" id="phoneCode1">
+                            <input type="text" class="code-input" maxlength="1" id="phoneCode2">
+                            <input type="text" class="code-input" maxlength="1" id="phoneCode3">
+                            <input type="text" class="code-input" maxlength="1" id="phoneCode4">
+                            <input type="text" class="code-input" maxlength="1" id="phoneCode5">
+                            <input type="text" class="code-input" maxlength="1" id="phoneCode6">
+                        </div>
+                        <div class="error-message" id="phoneCodeError"></div>
+                    </div>
+
+                    <div class="resend-code">
+                        <a href="#" class="resend-link" id="resendPhoneCode">إعادة إرسال الرمز</a>
+                    </div>
+
+                    <button type="button" class="btn-primary" id="verifyPhoneCodeBtn">
+                        <span>تحقق</span>
+                    </button>
+
+                    <button type="button" class="btn-primary" id="skipPhoneVerificationBtn" style="background: #5f6368; margin-top: 12px;">
+                        <span>تخطي</span>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Divider -->
+            <div class="divider">
+                <span>أو</span>
+            </div>
+
+            <!-- Social Registration -->
+            <div class="social-login">
+                <button type="button" class="btn-social btn-google" id="googleRegisterBtn">
+                    <svg class="social-icon" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
+                    <span>التسجيل باستخدام Google</span>
+                </button>
+
+                <button type="button" class="btn-social btn-facebook" id="facebookRegisterBtn">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="#1877F2">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                    <span>التسجيل باستخدام Facebook</span>
+                </button>
+            </div>
+
+            <!-- Register Footer -->
+            <div class="register-footer">
+                <p>لديك حساب بالفعل؟</p>
+                <a href="login.html" class="register-link">تسجيل الدخول</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Google-Style Registration Manager
+        class GoogleStyleRegistrationManager {
+            constructor() {
+                this.currentStep = 'basicInfo';
+                this.registrationData = {};
+                this.verificationCode = '';
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.setupCodeInputs();
+                this.setupPasswordStrength();
+                this.setupSocialRegistration();
+                this.setupPasswordToggles();
+            }
+
+            setupEventListeners() {
+                // Step navigation
+                document.getElementById('nextToPasswordBtn').addEventListener('click', () => {
+                    this.validateBasicInfo();
+                });
+
+                document.getElementById('nextToVerificationBtn').addEventListener('click', () => {
+                    this.validatePassword();
+                });
+
+                // Verification
+                document.getElementById('verifyCodeBtn').addEventListener('click', () => {
+                    this.verifyEmailCode();
+                });
+
+                document.getElementById('verifyPhoneCodeBtn').addEventListener('click', () => {
+                    this.verifyPhoneCode();
+                });
+
+                document.getElementById('skipPhoneVerificationBtn').addEventListener('click', () => {
+                    this.skipPhoneVerification();
+                });
+
+                // Resend codes
+                document.getElementById('resendCode').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.resendEmailCode();
+                });
+
+                document.getElementById('resendPhoneCode').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.resendPhoneCode();
+                });
+
+                // Social registration
+                document.getElementById('googleRegisterBtn').addEventListener('click', () => {
+                    this.handleGoogleRegistration();
+                });
+
+                document.getElementById('facebookRegisterBtn').addEventListener('click', () => {
+                    this.handleFacebookRegistration();
+                });
+
+                // Real-time validation
+                this.setupRealTimeValidation();
+            }
+
+            setupRealTimeValidation() {
+                // Email validation
+                document.getElementById('email').addEventListener('blur', () => {
+                    this.validateEmail();
+                });
+
+                // Phone validation
+                document.getElementById('phone').addEventListener('blur', () => {
+                    this.validatePhone();
+                });
+
+                // Password confirmation
+                document.getElementById('confirmPassword').addEventListener('input', () => {
+                    this.validatePasswordConfirmation();
+                });
+            }
+
+            setupCodeInputs() {
+                // Email verification codes
+                const emailCodes = ['code1', 'code2', 'code3', 'code4', 'code5', 'code6'];
+                emailCodes.forEach((id, index) => {
+                    const input = document.getElementById(id);
+                    input.addEventListener('input', (e) => {
+                        if (e.target.value.length === 1) {
+                            if (index < emailCodes.length - 1) {
+                                document.getElementById(emailCodes[index + 1]).focus();
+                            }
+                        }
+                    });
+                    input.addEventListener('keydown', (e) => {
+                        if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
+                            document.getElementById(emailCodes[index - 1]).focus();
+                        }
+                    });
+                });
+
+                // Phone verification codes
+                const phoneCodes = ['phoneCode1', 'phoneCode2', 'phoneCode3', 'phoneCode4', 'phoneCode5', 'phoneCode6'];
+                phoneCodes.forEach((id, index) => {
+                    const input = document.getElementById(id);
+                    input.addEventListener('input', (e) => {
+                        if (e.target.value.length === 1) {
+                            if (index < phoneCodes.length - 1) {
+                                document.getElementById(phoneCodes[index + 1]).focus();
+                            }
+                        }
+                    });
+                    input.addEventListener('keydown', (e) => {
+                        if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
+                            document.getElementById(phoneCodes[index - 1]).focus();
+                        }
+                    });
+                });
+            }
+
+            setupPasswordStrength() {
+                const passwordInput = document.getElementById('password');
+                const strengthIndicator = document.getElementById('passwordStrength');
+
+                passwordInput.addEventListener('input', () => {
+                    const password = passwordInput.value;
+                    const strength = this.calculatePasswordStrength(password);
+                    this.updatePasswordStrength(strength);
+                });
+            }
+
+            calculatePasswordStrength(password) {
+                let score = 0;
+                let feedback = [];
+
+                if (password.length >= 8) score += 1;
+                else feedback.push('يجب أن تكون كلمة المرور 8 أحرف على الأقل');
+
+                if (/[a-z]/.test(password)) score += 1;
+                else feedback.push('يجب أن تحتوي على حرف صغير');
+
+                if (/[A-Z]/.test(password)) score += 1;
+                else feedback.push('يجب أن تحتوي على حرف كبير');
+
+                if (/[0-9]/.test(password)) score += 1;
+                else feedback.push('يجب أن تحتوي على رقم');
+
+                if (/[^A-Za-z0-9]/.test(password)) score += 1;
+                else feedback.push('يجب أن تحتوي على رمز خاص');
+
+                return { score, feedback };
+            }
+
+            updatePasswordStrength(strength) {
+                const strengthIndicator = document.getElementById('passwordStrength');
+                const strengthBar = strengthIndicator.querySelector('.strength-bar') || this.createStrengthBar();
+
+                let strengthText = '';
+                let strengthClass = '';
+
+                if (strength.score <= 1) {
+                    strengthText = 'ضعيف';
+                    strengthClass = 'strength-weak';
+                } else if (strength.score <= 2) {
+                    strengthText = 'متوسط';
+                    strengthClass = 'strength-fair';
+                } else if (strength.score <= 3) {
+                    strengthText = 'جيد';
+                    strengthClass = 'strength-good';
+                } else {
+                    strengthText = 'قوي';
+                    strengthClass = 'strength-strong';
+                }
+
+                strengthIndicator.innerHTML = `
+                    <div>قوة كلمة المرور: <strong>${strengthText}</strong></div>
+                    <div class="strength-bar">
+                        <div class="strength-fill ${strengthClass}"></div>
+                    </div>
+                    ${strength.feedback.length > 0 ? '<div style="margin-top: 4px; font-size: 11px; color: #ea4335;">' + strength.feedback.join(', ') + '</div>' : ''}
+                `;
+            }
+
+            createStrengthBar() {
+                const strengthIndicator = document.getElementById('passwordStrength');
+                const bar = document.createElement('div');
+                bar.className = 'strength-bar';
+                strengthIndicator.appendChild(bar);
+                return bar;
+            }
+
+            setupSocialRegistration() {
+                // Initialize Google Sign-In
+                if (typeof gapi !== 'undefined') {
+                    gapi.load('auth2', () => {
+                        gapi.auth2.init({
+                            client_id: 'your-google-client-id'
+                        });
+                    });
+                }
+
+                // Initialize Facebook SDK
+                if (typeof FB !== 'undefined') {
+                    FB.init({
+                        appId: 'your-facebook-app-id',
+                        version: 'v18.0'
+                    });
+                }
+            }
+
+            validateBasicInfo() {
+                const firstName = document.getElementById('firstName').value.trim();
+                const lastName = document.getElementById('lastName').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const country = document.getElementById('country').value;
+                const experience = document.getElementById('experience').value;
+
+                let isValid = true;
+
+                // Validate required fields
+                if (!firstName) {
+                    this.showError('firstNameError', 'الاسم الأول مطلوب');
+                    isValid = false;
+                } else {
+                    this.clearError('firstNameError');
+                }
+
+                if (!lastName) {
+                    this.showError('lastNameError', 'الاسم الأخير مطلوب');
+                    isValid = false;
+                } else {
+                    this.clearError('lastNameError');
+                }
+
+                if (!email) {
+                    this.showError('emailError', 'البريد الإلكتروني مطلوب');
+                    isValid = false;
+                } else if (!this.isValidEmail(email)) {
+                    this.showError('emailError', 'البريد الإلكتروني غير صحيح');
+                    isValid = false;
+                } else {
+                    this.clearError('emailError');
+                }
+
+                if (!country) {
+                    this.showError('countryError', 'البلد مطلوب');
+                    isValid = false;
+                } else {
+                    this.clearError('countryError');
+                }
+
+                if (!experience) {
+                    this.showError('experienceError', 'مستوى الخبرة مطلوب');
+                    isValid = false;
+                } else {
+                    this.clearError('experienceError');
+                }
+
+                if (isValid) {
+                    this.registrationData = {
+                        firstName,
+                        lastName,
+                        email,
+                        phone: document.getElementById('phone').value.trim(),
+                        country,
+                        experience
+                    };
+                    this.showStep('passwordStep');
+                }
+            }
+
+            validatePassword() {
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                const terms = document.getElementById('terms').checked;
+
+                let isValid = true;
+
+                if (!password) {
+                    this.showError('passwordError', 'كلمة المرور مطلوبة');
+                    isValid = false;
+                } else if (password.length < 8) {
+                    this.showError('passwordError', 'كلمة المرور يجب أن تكون 8 أحرف على الأقل');
+                    isValid = false;
+                } else {
+                    this.clearError('passwordError');
+                }
+
+                if (!confirmPassword) {
+                    this.showError('confirmPasswordError', 'تأكيد كلمة المرور مطلوب');
+                    isValid = false;
+                } else if (password !== confirmPassword) {
+                    this.showError('confirmPasswordError', 'كلمة المرور غير متطابقة');
+                    isValid = false;
+                } else {
+                    this.clearError('confirmPasswordError');
+                }
+
+                if (!terms) {
+                    this.showNotification('يجب الموافقة على شروط الخدمة', 'error');
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    this.registrationData.password = password;
+                    this.registrationData.newsletter = document.getElementById('newsletter').checked;
+                    this.sendEmailVerification();
+                }
+            }
+
+            async sendEmailVerification() {
+                try {
+                    const response = await fetch('http://localhost:3000/api/send-email-verification', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ email: this.registrationData.email })
+                    });
+
+                    if (response.ok) {
+                        this.showStep('emailVerificationStep');
+                        this.startCountdown('resendCode');
+                    } else {
+                        throw new Error('Failed to send verification code');
+                    }
+                } catch (error) {
+                    this.showNotification('خطأ في إرسال رمز التحقق', 'error');
+                }
+            }
+
+            async verifyEmailCode() {
+                const codes = ['code1', 'code2', 'code3', 'code4', 'code5', 'code6'];
+                const verificationCode = codes.map(id => document.getElementById(id).value).join('');
+
+                if (verificationCode.length !== 6) {
+                    this.showError('codeError', 'يرجى إدخال رمز التحقق كاملاً');
+                    return;
+                }
+
+                try {
+                    const response = await fetch('http://localhost:3000/api/verify-email-code', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            email: this.registrationData.email,
+                            code: verificationCode
+                        })
+                    });
+
+                    if (response.ok) {
+                        // Check if phone number is provided
+                        if (this.registrationData.phone) {
+                            await this.sendPhoneVerification();
+                        } else {
+                            await this.completeRegistration();
+                        }
+                    } else {
+                        throw new Error('Invalid verification code');
+                    }
+                } catch (error) {
+                    this.showError('codeError', 'رمز التحقق غير صحيح');
+                }
+            }
+
+            async sendPhoneVerification() {
+                try {
+                    const response = await fetch('http://localhost:3000/api/send-phone-verification', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ phone: this.registrationData.phone })
+                    });
+
+                    if (response.ok) {
+                        this.showStep('phoneVerificationStep');
+                        this.startCountdown('resendPhoneCode');
+                    } else {
+                        // If phone verification fails, complete registration anyway
+                        await this.completeRegistration();
+                    }
+                } catch (error) {
+                    // If phone verification fails, complete registration anyway
+                    await this.completeRegistration();
+                }
+            }
+
+            async verifyPhoneCode() {
+                const codes = ['phoneCode1', 'phoneCode2', 'phoneCode3', 'phoneCode4', 'phoneCode5', 'phoneCode6'];
+                const verificationCode = codes.map(id => document.getElementById(id).value).join('');
+
+                if (verificationCode.length !== 6) {
+                    this.showError('phoneCodeError', 'يرجى إدخال رمز التحقق كاملاً');
+                    return;
+                }
+
+                try {
+                    const response = await fetch('http://localhost:3000/api/verify-phone-code', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            phone: this.registrationData.phone,
+                            code: verificationCode
+                        })
+                    });
+
+                    if (response.ok) {
+                        await this.completeRegistration();
+                    } else {
+                        throw new Error('Invalid verification code');
+                    }
+                } catch (error) {
+                    this.showError('phoneCodeError', 'رمز التحقق غير صحيح');
+                }
+            }
+
+            async skipPhoneVerification() {
+                await this.completeRegistration();
+            }
+
+            async completeRegistration() {
+                try {
+                    const response = await fetch('http://localhost:3000/api/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(this.registrationData)
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        this.showNotification('تم إنشاء الحساب بنجاح!', 'success');
+                        setTimeout(() => {
+                            window.location.href = 'login.html';
+                        }, 2000);
+                    } else {
+                        throw new Error(data.error || 'Registration failed');
+                    }
+                } catch (error) {
+                    this.showNotification('خطأ في إنشاء الحساب', 'error');
+                }
+            }
+
+            async handleGoogleRegistration() {
+                try {
+                    const authInstance = gapi.auth2.getAuthInstance();
+                    const googleUser = await authInstance.signIn();
+                    const profile = googleUser.getBasicProfile();
+
+                    const registrationData = {
+                        firstName: profile.getGivenName(),
+                        lastName: profile.getFamilyName(),
+                        email: profile.getEmail(),
+                        googleId: profile.getId(),
+                        profileImage: profile.getImageUrl(),
+                        newsletter: document.getElementById('newsletter').checked
+                    };
+
+                    await this.completeSocialRegistration(registrationData);
+                } catch (error) {
+                    console.error('Google registration failed:', error);
+                    this.showNotification('فشل التسجيل عبر Google', 'error');
+                }
+            }
+
+            async handleFacebookRegistration() {
+                try {
+                    const response = await FB.login();
+                    if (response.authResponse) {
+                        const userInfo = await FB.api('/me', { fields: 'id,name,email' });
+
+                        const nameParts = userInfo.name.split(' ');
+                        const registrationData = {
+                            firstName: nameParts[0],
+                            lastName: nameParts.slice(1).join(' '),
+                            email: userInfo.email,
+                            facebookId: userInfo.id,
+                            newsletter: document.getElementById('newsletter').checked
+                        };
+
+                        await this.completeSocialRegistration(registrationData);
+                    }
+                } catch (error) {
+                    console.error('Facebook registration failed:', error);
+                    this.showNotification('فشل التسجيل عبر Facebook', 'error');
+                }
+            }
+
+            async completeSocialRegistration(registrationData) {
+                try {
+                    const response = await fetch('http://localhost:3000/api/social-register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(registrationData)
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        localStorage.setItem('authToken', data.token);
+                        this.showNotification('تم إنشاء الحساب بنجاح!', 'success');
+                        setTimeout(() => {
+                            window.location.href = 'profile.html';
+                        }, 2000);
+                    } else {
+                        throw new Error(data.error || 'Registration failed');
+                    }
+                } catch (error) {
+                    this.showNotification('خطأ في إنشاء الحساب', 'error');
+                }
+            }
+
+            showStep(stepId) {
+                document.querySelectorAll('.verification-step').forEach(step => {
+                    step.classList.remove('active');
+                });
+
+                document.getElementById(stepId).classList.add('active');
+                this.currentStep = stepId;
+            }
+
+            showError(elementId, message) {
+                const errorElement = document.getElementById(elementId);
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+            }
+
+            clearError(elementId) {
+                const errorElement = document.getElementById(elementId);
+                errorElement.style.display = 'none';
+            }
+
+            showNotification(message, type) {
+                const notification = document.createElement('div');
+                notification.className = `notification notification-${type}`;
+                notification.textContent = message;
+                
+                Object.assign(notification.style, {
+                    position: 'fixed',
+                    top: '20px',
+                    right: '20px',
+                    padding: '1rem 2rem',
+                    borderRadius: '0.5rem',
+                    color: 'white',
+                    fontWeight: '500',
+                    zIndex: '10000',
+                    transform: 'translateX(100%)',
+                    transition: 'transform 0.3s ease',
+                    backgroundColor: type === 'success' ? '#10b981' : 
+                                   type === 'error' ? '#ef4444' : '#3b82f6'
+                });
+
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(0)';
+                }, 100);
+
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.parentNode.removeChild(notification);
+                        }
+                    }, 300);
+                }, 3000);
+            }
+
+            startCountdown(elementId) {
+                const element = document.getElementById(elementId);
+                let countdown = 60;
+                
+                const timer = setInterval(() => {
+                    element.textContent = `إعادة إرسال الرمز (${countdown})`;
+                    countdown--;
+                    
+                    if (countdown < 0) {
+                        clearInterval(timer);
+                        element.textContent = 'إعادة إرسال الرمز';
+                        element.style.pointerEvents = 'auto';
+                    }
+                }, 1000);
+            }
+
+            isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+
+            isValidPhone(phone) {
+                const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+                return phoneRegex.test(phone.replace(/\s/g, ''));
+            }
+
+            validateEmail() {
+                const email = document.getElementById('email').value.trim();
+                if (email && !this.isValidEmail(email)) {
+                    this.showError('emailError', 'البريد الإلكتروني غير صحيح');
+                } else {
+                    this.clearError('emailError');
+                }
+            }
+
+            validatePhone() {
+                const phone = document.getElementById('phone').value.trim();
+                if (phone && !this.isValidPhone(phone)) {
+                    this.showError('phoneError', 'رقم الهاتف غير صحيح');
+                } else {
+                    this.clearError('phoneError');
+                }
+            }
+
+            validatePasswordConfirmation() {
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+
+                if (confirmPassword && password !== confirmPassword) {
+                    this.showError('confirmPasswordError', 'كلمة المرور غير متطابقة');
+                } else {
+                    this.clearError('confirmPasswordError');
+                }
+            }
+
+            async resendEmailCode() {
+                await this.sendEmailVerification();
+            }
+
+            async resendPhoneCode() {
+                await this.sendPhoneVerification();
+            }
+
+            setupPasswordToggles() {
+                // Password toggle
+                const togglePassword = document.getElementById('togglePassword');
+                const passwordInput = document.getElementById('password');
+                
+                if (togglePassword && passwordInput) {
+                    togglePassword.addEventListener('click', () => {
+                        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                        passwordInput.setAttribute('type', type);
+                        togglePassword.textContent = type === 'password' ? '👁️' : '🙈';
+                    });
+                }
+
+                // Confirm password toggle
+                const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+                const confirmPasswordInput = document.getElementById('confirmPassword');
+                
+                if (toggleConfirmPassword && confirmPasswordInput) {
+                    toggleConfirmPassword.addEventListener('click', () => {
+                        const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                        confirmPasswordInput.setAttribute('type', type);
+                        toggleConfirmPassword.textContent = type === 'password' ? '👁️' : '🙈';
+                    });
+                }
+            }
+        }
+
+        // Initialize the Google-style registration manager
+        const googleStyleRegistration = new GoogleStyleRegistrationManager();
+
+        // Load Google and Facebook SDKs
+        function loadGoogleSDK() {
+            const script = document.createElement('script');
+            script.src = 'https://apis.google.com/js/api.js';
+            script.onload = () => {
+                gapi.load('auth2', () => {
+                    gapi.auth2.init({
+                        client_id: 'your-google-client-id'
+                    });
+                });
+            };
+            document.head.appendChild(script);
+        }
+
+        function loadFacebookSDK() {
+            const script = document.createElement('script');
+            script.src = 'https://connect.facebook.net/en_US/sdk.js';
+            script.onload = () => {
+                FB.init({
+                    appId: 'your-facebook-app-id',
+                    version: 'v18.0'
+                });
+            };
+            document.head.appendChild(script);
+        }
+
+        // Load SDKs when page loads
+        window.addEventListener('load', () => {
+            loadGoogleSDK();
+            loadFacebookSDK();
+        });
+    </script>
+</body>
+</html>
